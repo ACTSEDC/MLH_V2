@@ -1,0 +1,157 @@
+/* =========================================
+   FAQ SECTION — Full page layout
+   ========================================= */
+
+.faq-section {
+  background-color: var(--faq-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 60px 48px 80px;
+}
+
+/* ---- Header row ---- */
+.faq-section__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 120px;
+}
+
+.faq-section__title {
+  flex: 0 0 auto;
+  max-width: 480px;
+}
+
+.faq-section__title h1 {
+  font-family: var(--font-heading);
+  font-size: 140px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--text-white);
+  letter-spacing: -3.84px;
+  white-space: nowrap;
+  text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
+}
+
+.faq-section__title h1 .highlight {
+  color: var(--accent-red);
+  font-style: normal;
+}
+
+.faq-section__description {
+  flex: 0 0 565px;
+  max-width: 565px;
+  display: flex;
+  align-items: flex-end;
+  padding-left: 80px;
+}
+
+.faq-section__description p {
+  font-size: 32px;
+  line-height: 35px;
+  letter-spacing: 0;
+  color: #F4F3EB;
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ---- Accordion list ---- */
+/* Figma: W1657 H611, auto layout vertical, gap 0, padding 0, corner radius 0 */
+/* Drop shadow: X 11 Y 11 blur 0 spread 0, color #802B24 */
+.faq-section__list {
+  border: 2px solid #192221;
+  border-radius: 0;
+  overflow: visible;
+  /* Hard offset shadow from Figma — no blur, dark red #802B24 */
+  box-shadow: 11px 11px 0px 0px #802B24;
+}
+
+.faq-section__list .faq-item:first-child {
+  border-top: none;
+}
+
+/* ---- CTA Button ---- */
+.faq-section__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.faq-section__btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background-color: var(--accent-red);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 2.5px solid var(--btn-border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 3px 3px 0 var(--btn-border);
+}
+
+.faq-section__btn:hover {
+  background-color: var(--accent-red-dark);
+}
+
+.faq-section__btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--btn-border);
+}
+
+.faq-section__btn:focus-visible {
+  outline: 3px solid var(--text-white);
+  outline-offset: 3px;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 900px) {
+  .faq-section {
+    padding: 40px 28px 60px;
+  }
+
+  .faq-section__header {
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .faq-section__title h1 {
+    white-space: normal;
+  }
+
+  .faq-section__description {
+    flex: none;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .faq-section {
+    padding: 32px 16px 48px;
+  }
+
+  .faq-section__title h1 {
+    font-size: clamp(40px, 11vw, 64px);
+  }
+
+  .faq-section__cta {
+    margin-top: 36px;
+  }
+
+  .faq-section__btn {
+    padding: 12px 28px;
+    font-size: 13px;
+  }
+}
