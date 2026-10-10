@@ -1,0 +1,111 @@
+/* =========================================
+   FAQ ITEM — Single accordion row
+   ========================================= */
+
+.faq-item {
+  border: 4px solid #192221;
+  border-top: none;
+  background-color: var(--accordion-bg);
+  transition: background-color 0.2s ease;
+}
+
+.faq-item:first-child {
+  border-top: 4px solid #192221;
+}
+
+.faq-item:last-child {
+  border-bottom: 4px solid #192221;
+}
+
+/* Question row (always visible) */
+.faq-item__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.faq-item__trigger:hover {
+  background-color: var(--accordion-hover);
+}
+
+.faq-item__trigger:focus-visible {
+  outline: 3px solid var(--accent-red);
+  outline-offset: -3px;
+}
+
+.faq-item__question {
+  font-family: var(--font-heading);
+  font-size: 33px;
+  font-weight: 800;
+  letter-spacing: -0.82px;
+  text-transform: uppercase;
+  color: #192221;
+  line-height: normal;
+}
+
+/* Plus / Minus icon */
+.faq-item__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: -0.82px;
+  color: #192221;
+  line-height: normal;
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+.faq-item--open .faq-item__icon {
+  transform: rotate(45deg);
+}
+
+/* Answer panel */
+.faq-item__body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item--open .faq-item__body {
+  max-height: 500px;
+}
+
+.faq-item__answer {
+  padding: 0 28px 26px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: #2e3a39;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 768px) {
+  .faq-item__trigger {
+    padding: 16px 18px;
+  }
+
+  .faq-item__question {
+    font-size: 14px;
+  }
+
+  .faq-item__answer {
+    padding: 0 18px 16px;
+    font-size: 14px;
+  }
+}
