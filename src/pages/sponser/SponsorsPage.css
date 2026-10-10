@@ -1,0 +1,298 @@
+/* ==========================================================================
+   Sponsors Page Styles
+   ========================================================================== */
+
+/* Layout Container */
+.sponsors-container {
+  background-color: #37534c;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px 48px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justifyContent: center;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #ffffff;
+}
+
+.sponsors-wrapper {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* Header Section */
+.sponsors-header {
+  display: flex;
+  justifyContent: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  position: relative;
+  width: 100%;
+}
+
+.sponsors-title-wrap {
+  flex: 1;
+  display: flex;
+  justifyContent: center;
+}
+
+.sponsors-heading-img {
+  max-width: 620px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sponsors-subtitle-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  color: #d5dedc;
+  font-size: 13.5px;
+  line-height: 1.35;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.sponsors-header-accent {
+  width: 40px;
+  height: 4px;
+  background-color: #ff1e1e;
+  margin-top: 2px;
+}
+
+/* Cards List */
+.sponsors-cards-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+}
+
+.sponsor-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 2px;
+  display: flex;
+  min-height: 175px;
+  height: 175px;
+  box-sizing: border-box;
+}
+
+/* Card Tier Styles & Shadows */
+.sponsor-card.tier-gold {
+  border: none;
+  box-shadow: 9px 9px 0px #ffd000;
+}
+
+.sponsor-card.tier-silver {
+  border: none;
+  box-shadow: 9px 9px 0px #c5cbd3;
+}
+
+.sponsor-card.tier-bronze {
+  border: none;
+  box-shadow: 9px 9px 0px #cb7b2c;
+}
+
+/* Card Left Column */
+.sponsor-meta-col {
+  position: relative;
+  width: 260px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justifyContent: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+/* Inset Vertical Black Divider Line (with top and bottom gap) */
+.sponsor-meta-col::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background-color: #000000;
+}
+
+.sponsor-tier-badge {
+  color: #000000;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  display: inline-block;
+  text-transform: uppercase;
+}
+
+.sponsor-tier-badge.badge-gold {
+  background-color: #d2a134;
+}
+
+.sponsor-tier-badge.badge-silver {
+  background-color: #b0b3b8;
+}
+
+.sponsor-tier-badge.badge-bronze {
+  background-color: #cb7b2c;
+}
+
+.sponsor-red-line {
+  width: 38px;
+  height: 4.5px;
+  background-color: #ff1e1e;
+  margin: 8px 0 10px 0;
+}
+
+.sponsor-tier-subtitle {
+  color: #000000;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  white-space: pre-line;
+  margin: 0;
+  text-align: left;
+}
+
+/* Card Right Column (Logos) */
+.sponsor-logos-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 36px;
+  box-sizing: border-box;
+}
+
+.sponsor-logos-area.centered {
+  justify-content: center;
+}
+
+.sponsor-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sponsor-logo-img {
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.2s ease;
+}
+
+.sponsor-logo-img:hover {
+  transform: scale(1.04);
+}
+
+/* Action Button */
+.sponsors-footer-action {
+  width: 100%;
+  display: flex;
+  justifyContent: flex-start;
+  margin-top: 16px;
+}
+
+.explore-sponsors-btn {
+  background: #ff4343;
+  color: #000000;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 16px 64px;
+  min-width: 340px;
+  justify-content: center;
+  border: 2.5px solid #000000;
+  box-shadow: 6px 6px 0px #000000;
+  cursor: pointer;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.explore-sponsors-btn:hover {
+  background: #ff5c5c;
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px #000000;
+}
+
+.explore-sponsors-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #000000;
+}
+
+/* Responsive Adjustments for Mobile / Small Screens */
+@media (max-width: 900px) {
+  .sponsors-container {
+    padding: 36px 20px;
+  }
+
+  .sponsors-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .sponsors-subtitle-block {
+    align-items: center;
+  }
+
+  .sponsor-card {
+    height: auto;
+    min-height: auto;
+    flex-direction: column;
+  }
+
+  .sponsor-meta-col {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding: 18px 20px;
+  }
+
+  .sponsor-tier-subtitle {
+    text-align: center;
+  }
+
+  .sponsor-meta-col::after {
+    right: 20px;
+    left: 20px;
+    top: auto;
+    bottom: 0;
+    width: auto;
+    height: 1px;
+  }
+
+  .sponsor-logos-area {
+    justify-content: center !important;
+    flex-wrap: wrap;
+    padding: 20px 20px;
+  }
+
+  .sponsors-footer-action {
+    justify-content: center;
+  }
+
+  .explore-sponsors-btn {
+    width: 100%;
+    min-width: 100%;
+    justify-content: center;
+  }
+}
