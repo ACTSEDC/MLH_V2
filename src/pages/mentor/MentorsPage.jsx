@@ -1,8 +1,7 @@
-import React from 'react';
-import headingImg from '../../assets/images/Group 2.png';
-import tagImg from '../../assets/images/Group 3.png';
-import { MENTORS_CONFIG } from '../../data/mentorsData.js';
-import './MentorsPage.css';
+import headingImg from "../../assets/images/Group 2.png";
+import tagImg from "../../assets/images/Group 3.png";
+import { MENTORS_CONFIG } from "../../data/mentorsData.js";
+import "./MentorsPage.css";
 
 /**
  * MentorsPage Component
@@ -15,7 +14,6 @@ export default function MentorsPage({ mentors = MENTORS_CONFIG }) {
   return (
     <section className="mentors-container">
       <div className="mentors-wrapper">
-
         {/* Section Header */}
         <header className="mentors-header">
           <img
@@ -41,7 +39,10 @@ export default function MentorsPage({ mentors = MENTORS_CONFIG }) {
                       src={mentor.avatar}
                       alt={mentor.name}
                       className="mentor-avatar-img"
-                      style={{ objectPosition: mentor.objectPosition || 'center center' }}
+                      style={{
+                        objectPosition:
+                          mentor.objectPosition || "center center",
+                      }}
                     />
                   ) : (
                     <div className="mentor-card-placeholder" />
@@ -61,16 +62,13 @@ export default function MentorsPage({ mentors = MENTORS_CONFIG }) {
         <footer className="mentors-bottom-row">
           <div className="mentors-info-box">
             <p className="mentors-info-text">
-              OUR MENTORS AND JUDGES ARE INDUSTRY PROFESSIONALS , RESEARCHERS , AND EXPERIENCED DEVELOPERS WHO ARE HERE TO GUIDE YOU , ANSWER YOUR QUESTIONS AND EVALUATE THE PROJECTS
+              OUR MENTORS AND JUDGES ARE INDUSTRY PROFESSIONALS , RESEARCHERS ,
+              AND EXPERIENCED DEVELOPERS WHO ARE HERE TO GUIDE YOU , ANSWER YOUR
+              QUESTIONS AND EVALUATE THE PROJECTS
             </p>
           </div>
-
         </footer>
-
       </div>
     </section>
   );
 }
-
-
-
