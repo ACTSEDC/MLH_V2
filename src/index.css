@@ -1,34 +1,44 @@
-/* Global CSS Reset & Base Typography */
-* {
+/* ==========================================================================
+   Global CSS Reset & Base
+   Each page section manages its own background-color.
+   Do NOT set a global body background that overrides section backgrounds.
+   ========================================================================== */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
   width: 100%;
   overflow-x: hidden;
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* Neutral fallback — sections paint over this */
+  background-color: #1a1a1a;
+  /* Hide scrollbar across browsers */
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE / Edge */
 }
 
-/* Hide scrollbar for Chrome, Safari, Opera and WebKit */
-::-webkit-scrollbar {
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
   display: none;
-  width: 0px;
-  height: 0px;
+  width: 0;
+  height: 0;
   background: transparent;
 }
 
 body {
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #37534c;
   color: #ffffff;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+

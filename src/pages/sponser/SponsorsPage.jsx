@@ -1,5 +1,4 @@
 import React from 'react';
-import headingImg from '../../assets/images/Heading 2.png';
 import { SPONSORS_CONFIG } from '../../data/sponsorsData.js';
 import './SponsorsPage.css';
 
@@ -14,19 +13,11 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
 
         {/* Header Row */}
         <header className="sponsors-header">
-          <div className="sponsors-title-wrap">
-            <img
-              src={headingImg}
-              alt="BACKED BY BUILDERS."
-              className="sponsors-heading-img"
-            />
-          </div>
-
-          <div className="sponsors-subtitle-block">
-            <span>Grateful to our sponsors supporting</span>
-            <span>Hacktoberfest 2026.</span>
-            <div className="sponsors-header-accent" />
-          </div>
+          <h1 className="sponsors-heading">BACKED BY BUILDERS.</h1>
+          <p className="sponsors-subtitle">
+            Grateful to our sponsors supporting Hacktoberfest 2026.
+          </p>
+          <div className="sponsors-header-accent" aria-hidden="true" />
         </header>
 
         {/* Sponsor Tier List (ul > li) */}
@@ -63,16 +54,6 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
             );
           })}
         </ul>
-
-        {/* Action Button */}
-        <footer className="sponsors-footer-action">
-          <button
-            className="explore-sponsors-btn"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            Explore all Sponsors
-          </button>
-        </footer>
 
       </div>
     </section>

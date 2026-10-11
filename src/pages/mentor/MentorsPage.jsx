@@ -65,15 +65,6 @@ export default function MentorsPage({ mentors = MENTORS_CONFIG }) {
             </p>
           </div>
 
-          <div className="mentors-action-wrap">
-            <button
-              className="view-mentors-btn"
-              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            >
-              <span>VIEW ALL MENTORS AND JUDGES</span>
-              <span className="btn-arrow">↗</span>
-            </button>
-          </div>
         </footer>
 
       </div>

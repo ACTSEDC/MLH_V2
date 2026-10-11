@@ -9,25 +9,23 @@
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  padding: 24px 40px 28px;
+  padding: 24px 32px 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justifyContent: center;
+  justify-content: center;
   overflow: hidden;
   font-family: 'Barlow Semi Condensed', 'Plus Jakarta Sans', sans-serif;
   color: #000000;
 }
 
 .mentors-wrapper {
-  max-width: 1300px;
   width: 100%;
   height: 100%;
   max-height: 940px;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justifyContent: space-between;
+  justify-content: space-between;
   gap: 16px;
 }
 
@@ -42,14 +40,14 @@
 }
 
 .mentors-title-img {
-  max-width: 580px;
+  max-width: 760px;
   width: 100%;
   height: auto;
   display: block;
 }
 
 .mentors-tag-img {
-  max-width: 340px;
+  max-width: 440px;
   width: 100%;
   height: auto;
   display: block;
@@ -143,7 +141,7 @@
   flex: 1;
   min-height: 0;
   display: flex;
-  justifyContent: center;
+  justify-content: center;
   align-items: center;
   border: 1.5px solid #000000;
   border-radius: 2px;
@@ -212,7 +210,7 @@
 /* Bottom Row */
 .mentors-bottom-row {
   display: flex;
-  justifyContent: space-between;
+  justify-content: space-between;
   align-items: center;
   gap: 28px;
   width: 100%;
@@ -251,7 +249,7 @@
 /* Right View All Button (Rectangle 17 & Arrow 1) */
 .mentors-action-wrap {
   display: flex;
-  justifyContent: flex-end;
+  justify-content: flex-end;
   flex-shrink: 0;
 }
 

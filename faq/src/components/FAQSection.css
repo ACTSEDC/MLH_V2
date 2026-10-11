@@ -7,31 +7,31 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 60px 48px 80px;
+  padding: 26px 28px 86px;
 }
 
 /* ---- Header row ---- */
 .faq-section__header {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 40px;
-  margin-bottom: 120px;
+  gap: 56px;
+  margin-bottom: 118px;
 }
 
 .faq-section__title {
-  flex: 0 0 auto;
-  max-width: 480px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .faq-section__title h1 {
   font-family: var(--font-heading);
-  font-size: 140px;
+  font-size: clamp(76px, 6.4vw, 138px);
   font-weight: 800;
   text-transform: uppercase;
-  line-height: 1;
+  line-height: 0.95;
   color: var(--text-white);
-  letter-spacing: -3.84px;
+  letter-spacing: 0;
   white-space: nowrap;
   text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
 }
@@ -42,16 +42,16 @@
 }
 
 .faq-section__description {
-  flex: 0 0 565px;
-  max-width: 565px;
+  flex: 0 1 470px;
+  max-width: 470px;
   display: flex;
   align-items: flex-end;
-  padding-left: 80px;
+  margin-top: 48px;
 }
 
 .faq-section__description p {
-  font-size: 32px;
-  line-height: 35px;
+  font-size: clamp(24px, 1.5vw, 32px);
+  line-height: 1.08;
   letter-spacing: 0;
   color: #F4F3EB;
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -64,15 +64,11 @@
 /* Figma: W1657 H611, auto layout vertical, gap 0, padding 0, corner radius 0 */
 /* Drop shadow: X 11 Y 11 blur 0 spread 0, color #802B24 */
 .faq-section__list {
-  border: 2px solid #192221;
+  border: 3px solid #192221;
   border-radius: 0;
   overflow: visible;
-  /* Hard offset shadow from Figma — no blur, dark red #802B24 */
-  box-shadow: 11px 11px 0px 0px #802B24;
-}
-
-.faq-section__list .faq-item:first-child {
-  border-top: none;
+  box-shadow: 12px 12px 0 0 #802B24;
+  margin-right: 5px;
 }
 
 /* ---- CTA Button ---- */
@@ -118,32 +114,38 @@
    ========================================= */
 @media (max-width: 900px) {
   .faq-section {
-    padding: 40px 28px 60px;
+    padding: 36px 24px 62px;
   }
 
   .faq-section__header {
     flex-direction: column;
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 24px;
+    margin-bottom: 42px;
   }
 
   .faq-section__title h1 {
     white-space: normal;
+    font-size: clamp(62px, 13vw, 110px);
   }
 
   .faq-section__description {
     flex: none;
     max-width: 100%;
+    margin-top: 0;
   }
 }
 
 @media (max-width: 600px) {
   .faq-section {
-    padding: 32px 16px 48px;
+    padding: 28px 16px 48px;
   }
 
   .faq-section__title h1 {
-    font-size: clamp(40px, 11vw, 64px);
+    font-size: clamp(50px, 15vw, 78px);
+  }
+
+  .faq-section__description p {
+    font-size: 22px;
   }
 
   .faq-section__cta {

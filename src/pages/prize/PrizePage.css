@@ -1,0 +1,486 @@
+/* ==========================================================================
+   Prize Page Styles — v3 (pricing-hierarchy inspired)
+   Design tokens from Sponsors section:
+     Forest green   #3D5F58
+     Ivory bg       #F2F2EB
+     Yellow         #FFC900
+     Ink            #231F20
+     Red accent     #FF3838
+   Card widths widened ~20% vs v2 (820px).
+   Winner card is the clear hero; runner cards are equal supporting tiers.
+   ========================================================================== */
+
+/* ---- Section ---- */
+.prize-section {
+  width: 100%;
+  background-color: #F2F2EB;
+  color: #231F20;
+  padding: 72px 32px 88px;
+  box-sizing: border-box;
+}
+
+/* ---- Shared max-width container (matches Sponsors 1400px) ---- */
+.prize-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Heading block
+   ========================================================================== */
+/* Heading block — single column, full width */
+.prize-heading-block {
+  margin-bottom: 40px;
+}
+
+/* Left column helper (no longer needed in heading; kept for safety) */
+.prize-heading-left {
+  min-width: 0;
+}
+
+/* Large condensed heading — Unified neo-brutalist scale */
+.prize-heading {
+  font-family: 'Barlow Condensed', 'Impact', 'Arial Narrow', sans-serif;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #3D5F58;
+  margin: 0 0 16px 0;
+  /* Unified hard offset text shadow */
+  text-shadow: 6px 6px 0px #b3b7aa;
+}
+
+/* Prize pool subtext */
+.prize-pool-text {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5a6460;
+  margin: 0 0 16px 0;
+}
+
+/* Red accent rule (matches Sponsors red bar) */
+.prize-heading-rule {
+  width: 44px;
+  height: 4.5px;
+  background-color: #FF3838;
+  margin: 16px 0 0 0;
+}
+
+/* ==========================================================================
+   Yellow tagline callout box — RIGHT COLUMN of prize-content-row
+   flex: 0 0 260px gives fixed width; parent's align-items:stretch
+   makes it grow to match the full height of the cards column.
+   Same #FFC900 + border + shadow as .prize-special-amount
+   ========================================================================== */
+.prize-tagline-box {
+  flex: 0 0 260px;           /* fixed width on desktop */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  background-color: #FFC900;
+  border: 2.5px solid #c49b00;
+  box-shadow: 8px 8px 0 #231F20;
+  padding: 28px 32px;
+  font-family: 'Barlow Condensed', 'Impact', 'Arial Narrow', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 2.2vw, 2.4rem);
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #231F20;
+  box-sizing: border-box;
+}
+
+.prize-tagline-box span {
+  display: block;
+}
+
+
+/* ==========================================================================
+   Two-column content row: prize-cards-col left | tagline box right
+   align-items: stretch ensures tagline box grows to match cards column height
+   ========================================================================== */
+.prize-content-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Left column — cards stack vertically, takes all remaining width */
+.prize-cards-col {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* ==========================================================================
+   Winner card — HERO / FEATURED
+   Inspired by pricing's isPopular card: larger, bolder, spring-lifted.
+   ========================================================================== */
+.prize-winner-card {
+  position: relative;
+  width: 100%;
+  background-color: #FFC900;
+  /* Stronger border matching Sponsors card (2.5px) */
+  border: 2.5px solid #c49b00;
+  /* Heavy offset shadow — the hero card earns the biggest shadow */
+  box-shadow: 10px 10px 0 #231F20;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.prize-winner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 10px 15px 0 #231F20;
+}
+
+/* Top-left green accent strip — editorial asymmetry */
+.prize-winner-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background-color: #3D5F58;
+}
+
+.prize-winner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 40px 44px 40px 52px; /* extra left to clear accent strip */
+}
+
+.prize-winner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+/* "WINNER" label with decorative dot */
+.prize-rank-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #5e5000;
+  margin: 0;
+}
+
+.prize-rank-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3D5F58;
+  flex-shrink: 0;
+}
+
+/* Prize amount — hero number */
+.prize-amount {
+  font-family: 'Barlow Condensed', 'Impact', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #231F20;
+  margin: 2px 0 0 0;
+}
+
+/* "Cash prize and certificates" */
+.prize-description {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #3D5F58;
+  margin: 6px 0 0 0;
+}
+
+/* Trophy */
+.prize-trophy-wrap {
+  flex-shrink: 0;
+  transition: transform 0.5s ease;
+}
+
+.prize-trophy-wrap:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.prize-trophy-img {
+  width: 128px;
+  height: 128px;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==========================================================================
+   Runner-up row — two EQUAL supporting cards (pricing's side-card pair)
+   ========================================================================== */
+.prize-runner-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  width: 100%;
+}
+
+/* Individual runner card */
+.prize-runner-card {
+  background-color: #FFFFFF;
+  border: 2.5px solid #231F20;
+  box-shadow: 6px 6px 0 #231F20;
+  box-sizing: border-box;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.prize-runner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 10px 0 #231F20;
+}
+
+.prize-runner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px 28px;
+}
+
+.prize-runner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* "RUNNER UP" / "SECOND RUNNER UP" label */
+.prize-runner-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.66rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #6b7570;
+  margin: 0;
+}
+
+/* Runner prize amount */
+.prize-runner-amount {
+  font-family: 'Barlow Condensed', 'Impact', sans-serif;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: #3D5F58;
+  margin: 4px 0 0 0;
+}
+
+/* Runner description */
+.prize-runner-desc {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.73rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7570;
+  margin: 6px 0 0 0;
+}
+
+/* Medal SVG */
+.prize-medal {
+  flex-shrink: 0;
+  width: 68px;
+  height: 68px;
+}
+
+/* ==========================================================================
+   Special Contribution Award banner
+   ========================================================================== */
+.prize-special-banner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  border: 2.5px solid #231F20;
+  background-color: #F2F2EB;
+  padding: 24px 32px;
+  box-shadow: 6px 6px 0 #231F20;
+  box-sizing: border-box;
+}
+
+.prize-special-text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prize-special-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #231F20;
+  margin: 0;
+}
+
+.prize-special-sub {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #5a6460;
+  margin: 0;
+}
+
+/* Highlighted amount chip */
+.prize-special-amount {
+  flex-shrink: 0;
+  font-family: 'Barlow Condensed', 'Impact', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #231F20;
+  background-color: #FFC900;
+  border: 2.5px solid #c49b00;
+  padding: 10px 22px;
+  box-shadow: 4px 4px 0 #231F20;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* ==========================================================================
+   Responsive — Tablet (≤ 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .prize-section {
+    padding: 56px 24px 72px;
+  }
+
+  .prize-card-group {
+    max-width: 100%;
+  }
+
+  .prize-winner-inner {
+    padding: 32px 32px 32px 40px;
+  }
+
+  .prize-trophy-img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .prize-runner-inner {
+    padding: 24px 20px;
+  }
+}
+
+/* Collapse two-column content row to single column at 800px */
+@media (max-width: 800px) {
+  .prize-content-row {
+    flex-direction: column;
+  }
+
+  .prize-tagline-box {
+    flex: 0 0 auto;
+    width: 100%;
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    padding: 22px 24px;
+    box-shadow: 6px 6px 0 #231F20;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (≤ 600px)
+   ========================================================================== */
+@media (max-width: 600px) {
+  .prize-section {
+    padding: 44px 16px 60px;
+  }
+
+  .prize-heading {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+  }
+
+  /* Stack winner card content vertically on small screens */
+  .prize-winner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 28px 24px 28px 30px;
+    gap: 20px;
+  }
+
+  .prize-trophy-img {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* Runner cards: keep side-by-side but reduce padding */
+  .prize-runner-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .prize-runner-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px;
+    gap: 10px;
+  }
+
+  .prize-medal {
+    width: 52px;
+    height: 52px;
+  }
+
+  /* Banner stacks vertically */
+  .prize-special-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 20px;
+  }
+
+  .prize-special-amount {
+    align-self: flex-start;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Very small (≤ 400px) — runner cards go full-width stack
+   ========================================================================== */
+@media (max-width: 400px) {
+  .prize-runner-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .prize-runner-inner {
+    flex-direction: row;
+    align-items: center;
+    padding: 18px 20px;
+    gap: 16px;
+  }
+}

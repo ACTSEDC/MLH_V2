@@ -1,0 +1,112 @@
+/* =========================================
+   FAQ ITEM — Single accordion row
+   NOTE: CSS custom properties (--accordion-bg, --accordion-hover,
+   --accent-red, --font-heading) are defined on .faq-section in
+   FAQSection.css, so they inherit correctly here without leaking
+   into other sections of the page.
+   ========================================= */
+
+.faq-item {
+  border-top: 3px solid #192221;
+  background-color: var(--accordion-bg);
+  transition: background-color 0.2s ease;
+}
+
+.faq-section__list > div:first-child .faq-item {
+  border-top: none;
+}
+
+/* Question row (always visible) */
+.faq-item__trigger {
+  width: 100%;
+  min-height: 106px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+  transition: background-color 0.2s ease;
+}
+
+.faq-item__trigger:hover {
+  background-color: var(--accordion-hover);
+}
+
+.faq-item__trigger:focus-visible {
+  outline: 3px solid var(--accent-red);
+  outline-offset: -3px;
+}
+
+.faq-item__question {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 1.62vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #192221;
+  line-height: 1;
+}
+
+/* Plus / Minus icon */
+.faq-item__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 1.9vw, 40px);
+  font-weight: 800;
+  letter-spacing: 0;
+  color: #192221;
+  line-height: 1;
+  transition: transform 0.25s ease;
+  user-select: none;
+}
+
+.faq-item--open .faq-item__icon {
+  transform: rotate(45deg);
+}
+
+/* Answer panel */
+.faq-item__body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item--open .faq-item__body {
+  max-height: 500px;
+}
+
+.faq-item__answer {
+  padding: 0 28px 28px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: #2e3a39;
+}
+
+/* =========================================
+   Responsive
+   ========================================= */
+@media (max-width: 768px) {
+  .faq-item__trigger {
+    min-height: 76px;
+    padding: 18px;
+  }
+
+  .faq-item__question {
+    font-size: 20px;
+  }
+
+  .faq-item__answer {
+    padding: 0 18px 16px;
+    font-size: 14px;
+  }
+}

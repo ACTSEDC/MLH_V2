@@ -1,6 +1,4 @@
-/* Fonts. If your team already loads Barlow Condensed and Inter globally, delete this line. */
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500&display=swap");
-
+/* Fonts are loaded globally in index.html — no @import needed here. */
 /* All styles are scoped to .register-cta so they cannot leak into other sections. */
 .register-cta {
   --rc-bg: #F2F2EB;

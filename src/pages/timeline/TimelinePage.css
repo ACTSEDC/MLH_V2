@@ -1,0 +1,331 @@
+/* ==========================================================================
+   Timeline Page Styles — v3 (TimelineRail-inspired architecture)
+   - Separated rail element (background + active-progress fill)
+   - Active/past milestone visual treatment
+   - Same neo-brutalist design tokens as Sponsors section
+   ========================================================================== */
+
+/* ---- Section shell ---- */
+.timeline-section {
+  width: 100%;
+  background-color: #3D5F58;
+  color: #f5f4ec;
+  padding: 64px 32px 72px;
+  box-sizing: border-box;
+}
+
+/* ---- Shared content container (matches Sponsors max-width) ---- */
+.timeline-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ---- Heading — matches Sponsors editorial style ---- */
+.timeline-heading {
+  font-family: 'Barlow Condensed', 'Impact', 'Arial Narrow', sans-serif;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #f5f4ec;
+  margin: 0 0 52px 0;
+  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================
+   Rail container
+   Position context for the absolute rail.
+   Formula:
+     icon circle  = 80px
+     upper v-line = 40px
+     half of date = 34px  (68px / 2)
+     total top    = 154px
+   ========================================= */
+.timeline-rail-container {
+  position: relative;
+}
+
+/* ---- Background rail (full-width track) ---- */
+.timeline-rail {
+  position: absolute;
+  top: 154px;                        /* aligns with date-circle centres */
+  left:  12.5%;                      /* centre of first column (4-col grid) */
+  right: 12.5%;                      /* centre of last column              */
+  height: 3px;
+  display: none;                     /* desktop-only via media query        */
+  pointer-events: none;
+}
+
+/* Dim base track */
+.timeline-rail-track {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(245, 244, 236, 0.3);
+}
+
+/* Highlighted progress fill (animated by framer-motion) */
+.timeline-rail-active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  /* Vivid yellow — same as icon/date circles */
+  background-color: #ffe477;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ---- 4-column milestones list ---- */
+.timeline-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+/* ---- Single milestone step ---- */
+.timeline-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+/* Short vertical connectors (between icon and date) */
+.timeline-v-line {
+  width: 2px;
+  height: 40px;
+  flex-shrink: 0;
+  /* dim for future, brighter for active */
+  background-color: rgba(245, 244, 236, 0.3);
+  transition: background-color 0.4s ease;
+}
+
+.timeline-step.is-past .timeline-v-line {
+  background-color: rgba(255, 228, 119, 0.6);
+}
+
+/* =========================================
+   Icon circle
+   ========================================= */
+.timeline-icon-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.45s ease, box-shadow 0.45s ease, opacity 0.45s ease;
+
+  /* Future/inactive: slightly dimmed */
+  background-color: #ccba4f;
+  color: #1e3b35;
+  box-shadow: 3px 3px 0 rgba(16, 23, 20, 0.5);
+  opacity: 0.75;
+}
+
+/* Past/active milestone — full brightness + hard shadow */
+.timeline-step.is-past .timeline-icon-circle {
+  background-color: #ffe477;
+  color: #153b34;
+  box-shadow: 4px 4px 0 #101714;
+  opacity: 1;
+}
+
+.timeline-icon-circle:hover {
+  transform: rotate(4deg) scale(1.06);
+}
+
+.timeline-step.is-past .timeline-icon-circle:hover {
+  box-shadow: 6px 6px 0 #101714;
+}
+
+.timeline-icon-circle svg {
+  width: 34px;
+  height: 34px;
+}
+
+/* =========================================
+   Date circle (sits on the rail line)
+   ========================================= */
+.timeline-date-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-family: 'Barlow Condensed', 'Impact', sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+  margin-top: 40px;   /* = .timeline-v-line height */
+
+  /* Future: semi-transparent */
+  background-color: rgba(255, 207, 10, 0.35);
+  border: 3px solid rgba(16, 23, 20, 0.4);
+  color: rgba(0, 0, 0, 0.5);
+  box-shadow: none;
+}
+
+/* Past/active: full yellow with hard neo-brutalist shadow */
+.timeline-step.is-past .timeline-date-circle {
+  background-color: #ffcf0a;
+  border: 3.5px solid #101714;
+  color: #000000;
+  box-shadow: 4px 4px 0 #101714;
+}
+
+.timeline-step:hover .timeline-date-circle {
+  transform: translateY(-5px);
+}
+
+.timeline-step.is-past:hover .timeline-date-circle {
+  box-shadow: 4px 9px 0 #101714;
+}
+
+/* =========================================
+   Step labels
+   ========================================= */
+.timeline-step-title {
+  margin: 18px 0 0 0;
+  font-family: 'Barlow Condensed', 'Impact', sans-serif;
+  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.15;
+  transition: color 0.4s ease;
+
+  /* Future: muted */
+  color: rgba(245, 244, 236, 0.5);
+}
+
+.timeline-step.is-past .timeline-step-title {
+  color: #f5f4ec;
+}
+
+.timeline-step-desc {
+  margin: 6px 0 0 0;
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(0.82rem, 1.1vw, 0.98rem);
+  line-height: 1.45;
+  transition: color 0.4s ease;
+
+  /* Future: very muted */
+  color: rgba(166, 187, 180, 0.5);
+}
+
+.timeline-step.is-past .timeline-step-desc {
+  color: #c8d8d4;
+}
+
+.timeline-step-desc span {
+  display: block;
+}
+
+/* =========================================
+   "OCTOBER" month badge above the icon
+   ========================================= */
+.timeline-month-badge {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(245, 244, 236, 0.45);
+  margin: 0 0 6px 0;
+  transition: color 0.4s ease;
+}
+
+.timeline-step.is-past .timeline-month-badge {
+  color: rgba(245, 244, 236, 0.7);
+}
+
+/* ==========================================================================
+   Responsive — Desktop: show rail
+   ========================================================================== */
+@media (min-width: 901px) {
+  .timeline-rail {
+    display: block;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Tablet (≤ 900px): 2-column grid
+   ========================================================================== */
+@media (max-width: 900px) {
+  .timeline-section {
+    padding: 52px 24px 60px;
+  }
+
+  .timeline-heading {
+    margin-bottom: 40px;
+  }
+
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+
+  /* No connector line on tablet — grid wraps */
+  .timeline-rail {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   Responsive — Mobile (≤ 540px)
+   ========================================================================== */
+@media (max-width: 540px) {
+  .timeline-section {
+    padding: 44px 16px 52px;
+  }
+
+  .timeline-heading {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    margin-bottom: 32px;
+  }
+
+  .timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 12px;
+  }
+
+  .timeline-icon-circle {
+    width: 60px;
+    height: 60px;
+  }
+
+  .timeline-icon-circle svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .timeline-v-line {
+    height: 28px;
+  }
+
+  .timeline-date-circle {
+    width: 54px;
+    height: 54px;
+    font-size: 1.6rem;
+    margin-top: 28px;
+  }
+
+  .timeline-step-title {
+    font-size: 0.95rem;
+    margin-top: 12px;
+  }
+
+  .timeline-step-desc {
+    font-size: 0.8rem;
+  }
+}
