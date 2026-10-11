@@ -12,6 +12,7 @@
 
 /* ---- Section ---- */
 .prize-section {
+  flex: 0 0 auto;
   width: 100%;
   background-color: #f2f2eb;
   color: #231f20;
