@@ -1,6 +1,6 @@
 import './Footer.css';
-import instagramIcon from '../../Instagram.svg';
-import linkedinIcon from '../../linkedin.svg';
+import instagramIcon from '../assets/logos/Instagram.svg';
+import linkedinIcon from '../assets/logos/linkedin.svg';
 import { ActsLogoTransition } from '../pages/landing/ActsLogoTransition';
 
 export default function Footer() {

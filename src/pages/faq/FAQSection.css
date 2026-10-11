@@ -7,17 +7,17 @@
 
 .faq-section {
   /* ---- Scoped design tokens (no :root leakage) ---- */
-  --faq-bg: #3D5F58;
-  --accordion-bg: #F4F3EB;
+  --faq-bg: #3d5f58;
+  --accordion-bg: #f4f3eb;
   --accordion-border: #1a1a1a;
   --accordion-hover: #eae9e0;
-  --text-white: #F4F3EB;
+  --text-white: #f4f3eb;
   --text-dark: #192221;
-  --accent-red: #FF4549;
+  --accent-red: #ff4549;
   --accent-red-dark: #e03035;
   --btn-border: #1a1a1a;
-  --font-heading: 'Barlow Condensed', 'Impact', 'Arial Narrow', sans-serif;
-  --font-body: 'Barlow', 'Segoe UI', system-ui, sans-serif;
+  --font-heading: "Barlow Condensed", "Impact", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
 
   background-color: var(--faq-bg);
   min-height: 100vh;
@@ -69,8 +69,8 @@
   font-size: clamp(24px, 1.5vw, 32px);
   line-height: 1.08;
   letter-spacing: 0;
-  color: #F4F3EB;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  color: #f4f3eb;
+  font-family: "Barlow Semi Condensed", sans-serif;
   font-weight: 800;
   text-transform: uppercase;
   text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
@@ -81,8 +81,105 @@
   border: 3px solid #192221;
   border-radius: 0;
   overflow: visible;
-  box-shadow: 12px 12px 0 0 #802B24;
+  box-shadow: 12px 12px 0 0 #802b24;
   margin-right: 5px;
+}
+
+.faq-section__dev-challenges {
+  margin-top: 48px;
+  width: 100%;
+  border: 3px solid #192221;
+  background: var(--accordion-bg);
+  box-shadow: 12px 12px 0 0 #802b24;
+  padding: 24px 22px 22px;
+  box-sizing: border-box;
+}
+
+.faq-section__dev-challenges-header h2 {
+  margin: 0 0 20px;
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 2.6vw, 54px);
+  line-height: 0.95;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.faq-section__challenge-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.faq-section__challenge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 62px;
+  padding: 16px 18px;
+  background: var(--accent-red);
+  border: 2.5px solid var(--btn-border);
+  color: var(--text-white);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.3vw, 24px);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0 var(--btn-border);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background-color 0.2s ease,
+    padding-right 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-section__challenge-text {
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.2s ease;
+}
+
+.faq-section__challenge-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  flex-shrink: 0;
+  transform-origin: center;
+  letter-spacing: -0.08em;
+  position: relative;
+  left: 0;
+}
+
+.faq-section__challenge-link:hover {
+  background-color: var(--accent-red-dark);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--btn-border);
+  padding-right: 16px;
+}
+
+.faq-section__challenge-link:hover .faq-section__challenge-text {
+  transform: translateX(0);
+}
+
+.faq-section__challenge-link:hover .faq-section__challenge-arrow {
+  transform: scale(1.05);
+}
+
+.faq-section__challenge-link:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--btn-border);
 }
 
 /* ---- CTA Button ---- */
@@ -105,7 +202,9 @@
   border: 2.5px solid var(--btn-border);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
   box-shadow: 3px 3px 0 var(--btn-border);
 }
 
