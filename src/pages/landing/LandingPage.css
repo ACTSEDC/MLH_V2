@@ -1,0 +1,227 @@
+/* ---------------- CANVAS & FIGMA VECTOR WRAPPER ---------------- */
+.figma-vector-wrapper {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+  position: relative;
+  background: var(--color-canvas);
+}
+
+.artwork-container {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1920 / 1205;
+  overflow: hidden;
+  background: #3d5f58;
+}
+
+.figma-master-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: none;
+}
+
+/* ---------------- INTERACTIVE REGISTRATION BUTTON ---------------- */
+.hero-register-btn-wrapper {
+  position: absolute;
+  left: 74.3%;
+  top: 42.9%;
+  width: 17.4%;
+  height: 7.06%;
+  z-index: 60;
+  display: flex;
+}
+
+.hero-register-btn {
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+}
+
+.hero-register-btn::before {
+  content: "";
+  position: absolute;
+  inset: -8px -6px;
+}
+
+.interactive-hover-btn-root {
+  background-color: #e07a74;
+  color: #231f20;
+  border: clamp(1.5px, 0.2vw, 3px) solid #231f20;
+  border-radius: clamp(6px, 0.8vw, 13px);
+  box-shadow: clamp(2px, 0.28vw, 4px) clamp(2px, 0.28vw, 4px) 0px #231f20;
+  font-weight: 800;
+  font-size: clamp(8px, 0.95vw, 17px);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", inherit;
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease,
+    color 0.2s ease;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.interactive-hover-btn-root:hover {
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: clamp(3px, 0.35vw, 6px) clamp(3px, 0.35vw, 6px) 0px #231f20;
+  background-color: #2c4741;
+  color: #f2f2eb;
+}
+
+.interactive-hover-btn-root:active {
+  transform: translate(1px, 1px);
+  box-shadow: clamp(1px, 0.15vw, 2px) clamp(1px, 0.15vw, 2px) 0px #231f20;
+}
+
+.interactive-hover-btn-root:focus-visible {
+  outline: 3px solid #facf28;
+  outline-offset: 3px;
+}
+
+.interactive-hover-btn-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 100%;
+  padding: 0 0.25rem;
+}
+
+.interactive-hover-btn-text {
+  white-space: nowrap;
+  letter-spacing: 0;
+  transition: color 0.3s ease;
+}
+
+.interactive-hover-btn-badge {
+  flex-shrink: 0;
+  padding: 0.125rem;
+}
+
+.interactive-hover-btn-root:hover .interactive-hover-btn-text {
+  color: #f2f2eb;
+}
+
+.interactive-hover-btn-root:hover .interactive-hover-btn-badge {
+  transform: translateX(0.25rem);
+}
+
+.interactive-hover-btn-badge {
+  background-color: #ffffff;
+  border-radius: clamp(2px, 0.3vw, 4px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 0px rgba(35, 31, 32, 0.35);
+  transition:
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease;
+}
+
+.interactive-hover-btn-arrow {
+  width: clamp(10px, 0.9vw, 15px);
+  height: clamp(10px, 0.9vw, 15px);
+  stroke-width: 3px;
+  color: #231f20;
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .interactive-hover-btn-content {
+    gap: 0.5rem;
+    padding-inline: 0.5rem;
+  }
+
+  .interactive-hover-btn-text {
+    letter-spacing: 0.05em;
+  }
+
+  .interactive-hover-btn-badge {
+    border-radius: 4px;
+    padding: 0.25rem;
+  }
+}
+
+/* ---------------- ACTS LOGO THEME TRANSITION ---------------- */
+.hero-acts-logo-wrapper {
+  position: absolute;
+  left: 90.26%;
+  top: 4.07%;
+  width: 5.99%;
+  height: 9.21%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.acts-logo-transition-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.acts-logo-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.acts-logo-base {
+  opacity: 1;
+}
+
+.acts-logo-alt {
+  opacity: 0;
+  animation: actsLogoCrossfade 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: opacity;
+}
+
+@keyframes actsLogoCrossfade {
+  0%,
+  39% {
+    opacity: 0;
+  }
+  50%,
+  89% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------------- REDUCED MOTION ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .interactive-hover-btn-root,
+  .interactive-hover-btn-text,
+  .interactive-hover-btn-badge {
+    transition: none !important;
+  }
+
+  .acts-logo-alt {
+    animation: none !important;
+    opacity: 0 !important;
+  }
+}

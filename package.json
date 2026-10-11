@@ -9,24 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "canvas-confetti": "^1.9.4",
-    "clsx": "^2.1.1",
     "framer-motion": "^14.1.0",
+    "gsap": "^3.15.0",
     "lucide-react": "^1.55.0",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4",
-    "zustand": "^5.0.15"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
-    "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
-    "oxlint": "^1.81.0",
-    "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }
 }
-

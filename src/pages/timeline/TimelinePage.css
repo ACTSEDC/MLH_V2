@@ -1,331 +1,219 @@
-/* ==========================================================================
-   Timeline Page Styles — v3 (TimelineRail-inspired architecture)
-   - Separated rail element (background + active-progress fill)
-   - Active/past milestone visual treatment
-   - Same neo-brutalist design tokens as Sponsors section
-   ========================================================================== */
-
-/* ---- Section shell ---- */
+/* ---- Section ---- */
 .timeline-section {
-  width: 100%;
-  background-color: #3D5F58;
-  color: #f5f4ec;
-  padding: 64px 32px 72px;
+  box-sizing: border-box;
+  flex: 0 0 100vh;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  padding-top: 4rem; /* clears the fixed navbar */
+  background-color: #3b5b4f;
+  color: #f3efe4;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+.timeline-section *,
+.timeline-section *::before,
+.timeline-section *::after {
   box-sizing: border-box;
 }
 
-/* ---- Shared content container (matches Sponsors max-width) ---- */
-.timeline-wrapper {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
+.timeline-section h2,
+.timeline-section h3,
+.timeline-section p {
+  margin: 0;
 }
 
-/* ---- Heading — matches Sponsors editorial style ---- */
-.timeline-heading {
-  font-family: 'Barlow Condensed', 'Impact', 'Arial Narrow', sans-serif;
-  font-size: clamp(3rem, 6.5vw, 5.5rem);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  color: #f5f4ec;
-  margin: 0 0 52px 0;
-  text-shadow: 6px 6px 0px rgba(0, 0, 0, 0.25);
-}
-
-/* =========================================
-   Rail container
-   Position context for the absolute rail.
-   Formula:
-     icon circle  = 80px
-     upper v-line = 40px
-     half of date = 34px  (68px / 2)
-     total top    = 154px
-   ========================================= */
-.timeline-rail-container {
+/* ---- Track (slides left via GSAP) ---- */
+.timeline-track {
   position: relative;
+  display: flex;
+  height: 100%;
+  width: max-content;
 }
 
-/* ---- Background rail (full-width track) ---- */
-.timeline-rail {
+/* ---- Line (drawn by GSAP scaleX) ---- */
+.tl-line {
   position: absolute;
-  top: 154px;                        /* aligns with date-circle centres */
-  left:  12.5%;                      /* centre of first column (4-col grid) */
-  right: 12.5%;                      /* centre of last column              */
-  height: 3px;
-  display: none;                     /* desktop-only via media query        */
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 0.25rem;
+  margin-top: -0.125rem;
+  background-color: rgba(243, 239, 228, 0.7);
   pointer-events: none;
 }
 
-/* Dim base track */
-.timeline-rail-track {
-  position: absolute;
-  inset: 0;
-  background-color: rgba(245, 244, 236, 0.3);
-}
-
-/* Highlighted progress fill (animated by framer-motion) */
-.timeline-rail-active {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  /* Vivid yellow — same as icon/date circles */
-  background-color: #ffe477;
-  border-radius: 0 2px 2px 0;
-}
-
-/* ---- 4-column milestones list ---- */
-.timeline-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+/* ---- Intro panel ---- */
+.timeline-intro {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  grid-template-rows: 1fr auto 1fr;
+  flex-shrink: 0;
+  height: 100%;
+  width: 85vw;
+  padding-left: 8vw;
+  padding-right: 2rem;
 }
 
-/* ---- Single milestone step ---- */
-.timeline-step {
+.timeline-heading {
+  align-self: end;
+  padding-bottom: 2rem;
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 2.5rem;
+  line-height: 0.9;
+  width: fit-content;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+}
+
+.timeline-intro-gap {
+  height: 3.5rem;
+}
+
+.timeline-hint {
+  padding-top: 2rem;
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ffc800;
+}
+
+/* ---- Step (3-row grid; the middle row sits on the line) ---- */
+.tl-step {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  justify-items: center;
+  flex-shrink: 0;
+  height: 100%;
+  width: 75vw;
+  text-align: center;
+}
+
+/* row 1: icon + stem, anchored to the bottom so the stem touches the node */
+.tl-top {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  min-width: 0;
+  justify-content: flex-end;
 }
 
-/* Short vertical connectors (between icon and date) */
-.timeline-v-line {
-  width: 2px;
-  height: 40px;
-  flex-shrink: 0;
-  /* dim for future, brighter for active */
-  background-color: rgba(245, 244, 236, 0.3);
-  transition: background-color 0.4s ease;
+.tl-icon-circle {
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border: 2px solid #161616;
+  border-radius: 9999px;
+  background-color: #ffc800;
+  color: #161616;
+  box-shadow: 4px 4px 0 0 #161616;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.timeline-step.is-past .timeline-v-line {
-  background-color: rgba(255, 228, 119, 0.6);
+.tl-step:hover .tl-icon-circle {
+  transform: translateY(-0.5rem) rotate(-12deg) scale(1.1);
 }
 
-/* =========================================
-   Icon circle
-   ========================================= */
-.timeline-icon-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  transition: transform 0.45s ease, box-shadow 0.45s ease, opacity 0.45s ease;
-
-  /* Future/inactive: slightly dimmed */
-  background-color: #ccba4f;
-  color: #1e3b35;
-  box-shadow: 3px 3px 0 rgba(16, 23, 20, 0.5);
-  opacity: 0.75;
+.tl-icon-svg {
+  width: 1.75rem;
+  height: 1.75rem;
 }
 
-/* Past/active milestone — full brightness + hard shadow */
-.timeline-step.is-past .timeline-icon-circle {
-  background-color: #ffe477;
-  color: #153b34;
-  box-shadow: 4px 4px 0 #101714;
-  opacity: 1;
+.tl-stem {
+  width: 0.125rem;
+  height: 2rem;
+  background-color: rgba(243, 239, 228, 0.7);
 }
 
-.timeline-icon-circle:hover {
-  transform: rotate(4deg) scale(1.06);
+/* row 2: date node */
+.tl-day {
+  position: relative;
+  z-index: 10;
 }
 
-.timeline-step.is-past .timeline-icon-circle:hover {
-  box-shadow: 6px 6px 0 #101714;
+.tl-day-node {
+  display: grid;
+  place-items: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 3px solid #161616;
+  border-radius: 9999px;
+  background-color: #ffc800;
+  color: #161616;
+  font-family: "Bebas Neue", Impact, sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.timeline-icon-circle svg {
-  width: 34px;
-  height: 34px;
+.tl-step:hover .tl-day-node {
+  transform: scale(1.25);
+  animation: tlPulseRing 1.8s ease-out infinite;
 }
 
-/* =========================================
-   Date circle (sits on the rail line)
-   ========================================= */
-.timeline-date-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 68px;
-  height: 68px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  font-family: 'Barlow Condensed', 'Impact', sans-serif;
-  font-size: 2rem;
-  font-weight: 900;
-  line-height: 1;
-  transition: transform 0.45s ease, box-shadow 0.45s ease;
-  margin-top: 40px;   /* = .timeline-v-line height */
-
-  /* Future: semi-transparent */
-  background-color: rgba(255, 207, 10, 0.35);
-  border: 3px solid rgba(16, 23, 20, 0.4);
-  color: rgba(0, 0, 0, 0.5);
-  box-shadow: none;
-}
-
-/* Past/active: full yellow with hard neo-brutalist shadow */
-.timeline-step.is-past .timeline-date-circle {
-  background-color: #ffcf0a;
-  border: 3.5px solid #101714;
-  color: #000000;
-  box-shadow: 4px 4px 0 #101714;
-}
-
-.timeline-step:hover .timeline-date-circle {
-  transform: translateY(-5px);
-}
-
-.timeline-step.is-past:hover .timeline-date-circle {
-  box-shadow: 4px 9px 0 #101714;
-}
-
-/* =========================================
-   Step labels
-   ========================================= */
-.timeline-step-title {
-  margin: 18px 0 0 0;
-  font-family: 'Barlow Condensed', 'Impact', sans-serif;
-  font-size: clamp(1.05rem, 1.6vw, 1.45rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  line-height: 1.15;
-  transition: color 0.4s ease;
-
-  /* Future: muted */
-  color: rgba(245, 244, 236, 0.5);
-}
-
-.timeline-step.is-past .timeline-step-title {
-  color: #f5f4ec;
-}
-
-.timeline-step-desc {
-  margin: 6px 0 0 0;
-  font-family: 'Barlow', sans-serif;
-  font-size: clamp(0.82rem, 1.1vw, 0.98rem);
-  line-height: 1.45;
-  transition: color 0.4s ease;
-
-  /* Future: very muted */
-  color: rgba(166, 187, 180, 0.5);
-}
-
-.timeline-step.is-past .timeline-step-desc {
-  color: #c8d8d4;
-}
-
-.timeline-step-desc span {
-  display: block;
-}
-
-/* =========================================
-   "OCTOBER" month badge above the icon
-   ========================================= */
-.timeline-month-badge {
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: rgba(245, 244, 236, 0.45);
-  margin: 0 0 6px 0;
-  transition: color 0.4s ease;
-}
-
-.timeline-step.is-past .timeline-month-badge {
-  color: rgba(245, 244, 236, 0.7);
-}
-
-/* ==========================================================================
-   Responsive — Desktop: show rail
-   ========================================================================== */
-@media (min-width: 901px) {
-  .timeline-rail {
-    display: block;
+@keyframes tlPulseRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 200, 0, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(255, 200, 0, 0);
   }
 }
 
+/* row 3: text */
+.tl-text {
+  padding-top: 1.5rem;
+}
+
+.tl-title {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.tl-desc {
+  max-width: 14rem;
+  margin: 0.25rem auto 0;
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+  color: rgba(243, 239, 228, 0.6);
+}
+
+/* ---- End spacer so the last node isn't flush with the screen edge ---- */
+.timeline-end {
+  flex-shrink: 0;
+  width: 12vw;
+}
+
 /* ==========================================================================
-   Responsive — Tablet (≤ 900px): 2-column grid
+   Desktop (≥ 768px)
    ========================================================================== */
-@media (max-width: 900px) {
-  .timeline-section {
-    padding: 52px 24px 60px;
+@media (min-width: 768px) {
+  .timeline-intro {
+    width: 45vw;
   }
 
   .timeline-heading {
-    margin-bottom: 40px;
+    font-size: 4.5rem;
   }
 
-  .timeline-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px 32px;
+  .tl-step {
+    width: 28vw;
   }
 
-  /* No connector line on tablet — grid wraps */
-  .timeline-rail {
-    display: none !important;
+  .tl-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
-/* ==========================================================================
-   Responsive — Mobile (≤ 540px)
-   ========================================================================== */
-@media (max-width: 540px) {
-  .timeline-section {
-    padding: 44px 16px 52px;
-  }
-
-  .timeline-heading {
-    font-size: clamp(2rem, 8vw, 2.8rem);
-    margin-bottom: 32px;
-  }
-
-  .timeline-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px 12px;
-  }
-
-  .timeline-icon-circle {
-    width: 60px;
-    height: 60px;
-  }
-
-  .timeline-icon-circle svg {
-    width: 26px;
-    height: 26px;
-  }
-
-  .timeline-v-line {
-    height: 28px;
-  }
-
-  .timeline-date-circle {
-    width: 54px;
-    height: 54px;
-    font-size: 1.6rem;
-    margin-top: 28px;
-  }
-
-  .timeline-step-title {
-    font-size: 0.95rem;
-    margin-top: 12px;
-  }
-
-  .timeline-step-desc {
-    font-size: 0.8rem;
+@media (prefers-reduced-motion: reduce) {
+  .tl-step:hover .tl-day-node {
+    animation: none;
   }
 }
