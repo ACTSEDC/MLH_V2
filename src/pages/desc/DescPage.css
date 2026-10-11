@@ -1,0 +1,296 @@
+/* ---------------- ABOUT HACKTOBERFEST SECTION ---------------- */
+.about-section {
+  width: 100%;
+  max-width: 1920px;
+  margin-inline: auto;
+  background-color: #f2f2eb;
+  border-top: 4px solid #231f20;
+  padding: clamp(40px, 4.5vw, 84px) clamp(24px, 5.2vw, 100px)
+    clamp(60px, 6vw, 110px);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.about-container {
+  max-width: 1720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Split Grid: Left = Heading + Intro, Right = 4-Quadrant Stats Card */
+.about-top-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(0, 0.98fr);
+  gap: clamp(32px, 4vw, 76px);
+  align-items: start;
+}
+
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Editorial Heading Reveal */
+.about-heading-wrapper {
+  margin-bottom: clamp(20px, 2.2vw, 38px);
+}
+
+.about-main-heading {
+  font-family:
+    "Space Grotesk",
+    -apple-system,
+    sans-serif;
+  font-weight: 900;
+  color: #2e4742;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  -webkit-text-stroke: clamp(0.6px, 0.08vw, 1.8px) #2e4742;
+  paint-order: stroke fill;
+}
+
+.heading-line-1 {
+  font-size: clamp(40px, 5.2vw, 102px);
+  text-shadow: 2px 6px 5px rgba(0, 0, 0, 0.28);
+  display: block;
+  font-weight: 900;
+}
+
+.heading-line-2 {
+  font-size: clamp(40px, 5.2vw, 102px);
+  text-shadow: 2px 6px 5px rgba(0, 0, 0, 0.28);
+  display: inline-flex;
+  align-items: flex-start;
+  gap: clamp(8px, 1.2vw, 22px);
+  position: relative;
+  width: fit-content;
+  font-weight: 900;
+}
+
+.heading-text-hacktoberfest {
+  display: inline-block;
+  font-weight: 900;
+}
+
+/* Badge 26 placed at the upper-right of HACKTOBERFEST as shown in reference */
+.about-badge-26 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2eb;
+  color: #2e4742;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(18px, 2.3vw, 46px);
+  font-weight: 900;
+  border: clamp(2.5px, 0.26vw, 4.5px) solid #231f20;
+  border-radius: clamp(5px, 0.6vw, 11px);
+  box-shadow: clamp(2.5px, 0.28vw, 4.5px) clamp(2.5px, 0.28vw, 4.5px) 0px
+    #231f20;
+  padding: clamp(2px, 0.25vw, 5px) clamp(8px, 0.9vw, 18px);
+  line-height: 1;
+  text-shadow: none;
+  -webkit-text-stroke: clamp(0.5px, 0.06vw, 1.2px) #2e4742;
+  transform: translateY(-24%);
+  flex-shrink: 0;
+  vertical-align: top;
+}
+
+/* Paragraphs */
+.about-intro-paragraph,
+.about-body-paragraph {
+  font-family:
+    "Inter",
+    "Space Grotesk",
+    -apple-system,
+    sans-serif;
+  font-size: clamp(15px, 1.35vw, 24px);
+  line-height: 1.58;
+  color: #354b46;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Bottom Full-Width Story Content */
+.about-bottom-content {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 1.5vw, 24px);
+}
+
+.about-milestone-subheading {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(20px, 1.85vw, 34px);
+  font-weight: 800;
+  color: #2e4742;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: clamp(38px, 3.8vw, 64px);
+  margin-bottom: clamp(10px, 1vw, 16px);
+}
+
+/* ---------------- FOUR-QUADRANT STATISTICS CARD ---------------- */
+.stats-card-container {
+  width: 100%;
+  max-width: 710px;
+  margin-left: auto;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #231f20;
+  border: clamp(3px, 0.3vw, 4.5px) solid #231f20;
+  border-radius: clamp(10px, 1vw, 16px);
+  box-shadow: clamp(5px, 0.5vw, 8px) clamp(5px, 0.5vw, 8px) 0px #231f20;
+  overflow: hidden;
+  gap: clamp(2.5px, 0.25vw, 4px);
+}
+
+.stat-quadrant {
+  padding: clamp(24px, 2.6vw, 46px) clamp(18px, 2.2vw, 40px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  transition:
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.22s ease,
+    box-shadow 0.22s ease;
+  user-select: none;
+  cursor: default;
+  position: relative;
+}
+
+.stat-quadrant:hover {
+  transform: translateY(-2.5px);
+  filter: brightness(1.035);
+  box-shadow: 0 4px 12px rgba(35, 31, 32, 0.12);
+  z-index: 2;
+}
+
+/* Quadrant Theme Colors matching the Figma export artwork */
+.quadrant-yellow {
+  background-color: #f5b726;
+}
+.quadrant-blue {
+  background-color: #8bb2de;
+}
+.quadrant-coral {
+  background-color: #e97b77;
+}
+.quadrant-white {
+  background-color: #f2f2eb;
+}
+
+.stat-number {
+  font-family:
+    "Space Grotesk",
+    -apple-system,
+    sans-serif;
+  font-size: clamp(36px, 4.1vw, 74px);
+  font-weight: 900;
+  color: #231f20;
+  line-height: 1;
+  margin-bottom: clamp(6px, 0.7vw, 12px);
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+}
+
+.stat-suffix {
+  font-weight: 900;
+}
+
+.stat-label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(11px, 1.15vw, 20px);
+  font-weight: 800;
+  color: #231f20;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+}
+
+/* ---------------- ACCESSIBILITY & REDUCED MOTION ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .stat-quadrant {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 960px) {
+  .about-top-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .stats-card-container {
+    margin-left: 0;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 540px) {
+  .about-section {
+    padding: 36px 18px 50px;
+  }
+  .stat-quadrant {
+    padding: 20px 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 32px 14px 44px;
+  }
+  .about-top-grid {
+    gap: 28px;
+  }
+  .heading-line-1,
+  .heading-line-2 {
+    font-size: clamp(24px, 7.5vw, 36px);
+    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.25);
+    -webkit-text-stroke: 0.8px #2e4742;
+  }
+  .heading-line-2 {
+    gap: 6px;
+    align-items: flex-start;
+  }
+  .about-badge-26 {
+    font-size: clamp(13px, 4vw, 18px);
+    padding: 2px 7px;
+    border-width: 2.2px;
+    box-shadow: 2px 2px 0px #231f20;
+    -webkit-text-stroke: 0.6px #2e4742;
+    transform: translateY(-20%);
+  }
+  .about-intro-paragraph,
+  .about-body-paragraph {
+    font-size: 14.5px;
+    line-height: 1.6;
+  }
+  .about-milestone-subheading {
+    font-size: 18px;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+
+  /* Stats grid quadrant mobile optimization */
+  .stats-grid {
+    gap: 3px;
+  }
+  .stat-quadrant {
+    padding: 16px 12px;
+  }
+  .stat-number {
+    font-size: clamp(26px, 7.5vw, 36px);
+    margin-bottom: 4px;
+  }
+  .stat-label {
+    font-size: clamp(9.5px, 2.7vw, 12px);
+    letter-spacing: 0.02em;
+  }
+}

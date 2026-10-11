@@ -1,23 +1,51 @@
+/* Space Grotesk + Inter for the navbar / landing / about pages.
+   Plus Jakarta Sans, Barlow and Barlow Condensed stay in index.html as before. */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&display=swap");
+
+/* ==========================================================================
+   Design tokens (used by landingPage.css)
+   ========================================================================== */
+:root {
+  --color-canvas: #f2f2eb;
+  --color-green: #3d5f58;
+  --color-green-dark: #2c4741;
+  --color-yellow: #ffd000;
+  --color-coral: #ff4e51;
+  --color-dark: #1f2724;
+  --color-white: #ffffff;
+}
+
 /* ==========================================================================
    Global CSS Reset & Base
    Each page section manages its own background-color.
    Do NOT set a global body background that overrides section backgrounds.
    ========================================================================== */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth; /* navbar anchor links */
+}
+
+html,
+body {
   min-height: 100vh;
   width: 100%;
+  /* `clip`, not `hidden`: `hidden` on both html and body turns body into a
+     scroll container, which breaks the sticky navbar and GSAP pinning.
+     The `hidden` line is only a fallback for old browsers. */
   overflow-x: hidden;
+  overflow-x: clip;
   /* Neutral fallback — sections paint over this */
   background-color: #1a1a1a;
   /* Hide scrollbar across browsers */
-  scrollbar-width: none;       /* Firefox */
-  -ms-overflow-style: none;    /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE / Edge */
 }
 
 html::-webkit-scrollbar,
@@ -29,7 +57,13 @@ body::-webkit-scrollbar {
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Plus Jakarta Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   color: #ffffff;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
@@ -42,3 +76,53 @@ body {
   min-height: 100vh;
 }
 
+/* ==========================================================================
+   Navbar + About keep their original Space Grotesk look
+   (everything else inherits Plus Jakarta Sans from body)
+   ========================================================================== */
+.navbar,
+.about-section {
+  font-family:
+    "Space Grotesk",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+/* ==========================================================================
+   Page-load fade for <main>
+   Opacity only: a transform here would shift section positions during the
+   animation and would break position:fixed pinning inside it.
+   ========================================================================== */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.main-content {
+  width: 100%;
+  animation: pageFadeIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-content {
+    animation: none;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
