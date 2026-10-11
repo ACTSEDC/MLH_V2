@@ -57,12 +57,15 @@
 .timeline-heading {
   align-self: end;
   padding-bottom: 2rem;
-  font-family: "Bebas Neue", Impact, sans-serif;
-  font-size: 2.5rem;
-  line-height: 0.9;
+  font-family: "Barlow Condensed", "Impact", "Arial Narrow", sans-serif;
+  font-size: clamp(3rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1;
   width: fit-content;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
+  color: #f3efe4;
+  text-shadow: 6px 6px 0 #231f20;
 }
 
 .timeline-intro-gap {
@@ -196,10 +199,6 @@
 @media (min-width: 768px) {
   .timeline-intro {
     width: 45vw;
-  }
-
-  .timeline-heading {
-    font-size: 4.5rem;
   }
 
   .tl-step {

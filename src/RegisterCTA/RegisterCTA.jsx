@@ -1,7 +1,7 @@
 import { motion, MotionConfig } from "framer-motion";
 import "./RegisterCTA.css";
 import defaultArt from "./assets/cta-art.webp";
-import defaultQr from "./assets/qr.png";
+import defaultQr from "../../QR code.svg";
 
 /* Parent just orchestrates; children carry their own delays */
 const container = { hidden: {}, visible: {} };
