@@ -1,12 +1,10 @@
 /* =========================================
-   FAQ SECTION — Full page layout
-   CSS custom properties are scoped to .faq-section
-   so they do NOT bleed into the global stylesheet
-   or affect other sections on the page.
+   FAQ SECTION
+   Scoped styles for FAQ and Dev Challenges
    ========================================= */
 
 .faq-section {
-  /* ---- Scoped design tokens (no :root leakage) ---- */
+  /* Design tokens */
   --faq-bg: #3d5f58;
   --accordion-bg: #f4f3eb;
   --accordion-border: #1a1a1a;
@@ -16,17 +14,30 @@
   --accent-red: #ff4549;
   --accent-red-dark: #e03035;
   --btn-border: #1a1a1a;
+  --shadow-red: #802b24;
+
   --font-heading: "Barlow Condensed", "Impact", "Arial Narrow", sans-serif;
   --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
 
-  background-color: var(--faq-bg);
+  box-sizing: border-box;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 26px 28px 86px;
+  background-color: var(--faq-bg);
 }
 
-/* ---- Header row ---- */
+.faq-section *,
+.faq-section *::before,
+.faq-section *::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+   HEADER
+   ========================================= */
+
 .faq-section__header {
   display: flex;
   align-items: flex-start;
@@ -41,15 +52,16 @@
 }
 
 .faq-section__title h1 {
+  margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(76px, 6.4vw, 138px);
   font-weight: 800;
-  text-transform: uppercase;
   line-height: 0.95;
-  color: var(--text-white);
   letter-spacing: 0;
-  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--text-white);
   text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
+  overflow-wrap: anywhere;
 }
 
 .faq-section__title h1 .highlight {
@@ -59,6 +71,7 @@
 
 .faq-section__description {
   flex: 0 1 470px;
+  min-width: 0;
   max-width: 470px;
   display: flex;
   align-items: flex-end;
@@ -66,79 +79,104 @@
 }
 
 .faq-section__description p {
+  margin: 0;
+  font-family: "Barlow Semi Condensed", var(--font-body);
   font-size: clamp(24px, 1.5vw, 32px);
+  font-weight: 800;
   line-height: 1.08;
   letter-spacing: 0;
-  color: #f4f3eb;
-  font-family: "Barlow Semi Condensed", sans-serif;
-  font-weight: 800;
   text-transform: uppercase;
+  color: var(--text-white);
   text-shadow: 5px 11px 4px rgba(0, 0, 0, 0.25);
+  overflow-wrap: anywhere;
 }
 
-/* ---- Accordion list ---- */
+/* =========================================
+   FAQ ACCORDION
+   ========================================= */
+
 .faq-section__list {
-  border: 3px solid #192221;
+  min-width: 0;
+  border: 3px solid var(--accordion-border);
   border-radius: 0;
   overflow: visible;
-  box-shadow: 12px 12px 0 0 #802b24;
+  box-shadow: 12px 12px 0 var(--shadow-red);
   margin-right: 5px;
 }
 
+/* =========================================
+   DEV CHALLENGES CONTAINER
+   ========================================= */
+
 .faq-section__dev-challenges {
-  margin-top: 48px;
   width: 100%;
-  border: 3px solid #192221;
-  background: var(--accordion-bg);
-  box-shadow: 12px 12px 0 0 #802b24;
+  min-width: 0;
+  margin-top: 48px;
   padding: 24px 22px 22px;
-  box-sizing: border-box;
+  border: 3px solid var(--accordion-border);
+  background: var(--accordion-bg);
+  box-shadow: 12px 12px 0 var(--shadow-red);
 }
 
 .faq-section__dev-challenges-header h2 {
   margin: 0 0 20px;
   font-family: var(--font-heading);
   font-size: clamp(32px, 2.6vw, 54px);
+  font-weight: 800;
   line-height: 0.95;
-  color: var(--text-dark);
-  text-transform: uppercase;
   letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-dark);
+  overflow-wrap: anywhere;
 }
+
+/* Challenge cards */
 
 .faq-section__challenge-list {
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
+  width: 100%;
+  min-width: 0;
 }
 
 .faq-section__challenge-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 50px;
-  padding: 11px 14px;
-  background: var(--accent-red);
+
+  width: 100%;
+  min-width: 0;
+  min-height: 76px;
+  padding: 14px 16px;
+
   border: 2.5px solid var(--btn-border);
+  background: var(--accent-red);
   color: var(--text-white);
-  text-decoration: none;
+
   font-family: var(--font-body);
   font-size: clamp(15px, 1.1vw, 20px);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-decoration: none;
+
   box-shadow: 4px 4px 0 var(--btn-border);
   transition:
     transform 0.12s ease,
     box-shadow 0.12s ease,
-    background-color 0.2s ease,
-    padding-right 0.2s ease;
+    background-color 0.2s ease;
+
   position: relative;
-  overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .faq-section__challenge-text {
   display: inline-block;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
   transform: translateX(0);
   transition: transform 0.2s ease;
 }
@@ -147,34 +185,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex: 0 0 20px;
+
   width: 20px;
   height: 20px;
+
   border: none;
-  transform: scale(1);
-  transition: transform 0.2s ease;
   font-size: 26px;
   font-weight: 900;
   line-height: 1;
-  flex-shrink: 0;
-  transform-origin: center;
   letter-spacing: -0.08em;
-  position: relative;
-  left: 0;
+
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 0.2s ease;
 }
 
-.faq-section__challenge-link:hover {
-  background-color: var(--accent-red-dark);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0 var(--btn-border);
-  padding-right: 16px;
-}
+/* Hover only on devices that support it */
 
-.faq-section__challenge-link:hover .faq-section__challenge-text {
-  transform: translateX(0);
-}
+@media (hover: hover) and (pointer: fine) {
+  .faq-section__challenge-link:hover {
+    background-color: var(--accent-red-dark);
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--btn-border);
+  }
 
-.faq-section__challenge-link:hover .faq-section__challenge-arrow {
-  transform: scale(1.05);
+  .faq-section__challenge-link:hover .faq-section__challenge-arrow {
+    transform: scale(1.05);
+  }
 }
 
 .faq-section__challenge-link:active {
@@ -182,7 +220,15 @@
   box-shadow: 2px 2px 0 var(--btn-border);
 }
 
-/* ---- CTA Button ---- */
+.faq-section__challenge-link:focus-visible {
+  outline: 3px solid var(--text-dark);
+  outline-offset: 4px;
+}
+
+/* =========================================
+   CALL TO ACTION
+   ========================================= */
+
 .faq-section__cta {
   display: flex;
   justify-content: center;
@@ -192,24 +238,29 @@
 .faq-section__btn {
   display: inline-block;
   padding: 14px 40px;
+
+  border: 2.5px solid var(--btn-border);
   background-color: var(--accent-red);
   color: var(--text-white);
+
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  border: 2.5px solid var(--btn-border);
-  cursor: pointer;
   text-decoration: none;
+
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--btn-border);
   transition:
     background-color 0.2s ease,
     transform 0.1s ease;
-  box-shadow: 3px 3px 0 var(--btn-border);
 }
 
-.faq-section__btn:hover {
-  background-color: var(--accent-red-dark);
+@media (hover: hover) and (pointer: fine) {
+  .faq-section__btn:hover {
+    background-color: var(--accent-red-dark);
+  }
 }
 
 .faq-section__btn:active {
@@ -223,8 +274,9 @@
 }
 
 /* =========================================
-   Responsive
+   TABLETS
    ========================================= */
+
 @media (max-width: 900px) {
   .faq-section {
     padding: 36px 24px 62px;
@@ -237,16 +289,29 @@
   }
 
   .faq-section__title h1 {
-    white-space: normal;
     font-size: clamp(62px, 13vw, 110px);
   }
 
   .faq-section__description {
-    flex: none;
+    flex: 0 1 auto;
+    width: 100%;
     max-width: 100%;
     margin-top: 0;
   }
+
+  .faq-section__dev-challenges {
+    padding: 22px 18px 20px;
+  }
+
+  .faq-section__challenge-link {
+    font-size: clamp(15px, 2vw, 18px);
+    letter-spacing: 0.08em;
+  }
 }
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 600px) {
   .faq-section {
@@ -261,21 +326,44 @@
     font-size: 22px;
   }
 
-  .faq-section__cta {
+  .faq-section__list {
+    margin-right: 0;
+    box-shadow: 8px 8px 0 var(--shadow-red);
+  }
+
+  .faq-section__dev-challenges {
     margin-top: 36px;
+    padding: 20px 14px 18px;
+    box-shadow: 8px 8px 0 var(--shadow-red);
+  }
+
+  .faq-section__dev-challenges-header h2 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1;
+  }
+
+  .faq-section__challenge-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
   }
 
   .faq-section__challenge-link {
-    min-height: 44px;
-    padding: 9px 11px;
-    font-size: 14px;
+    min-height: 72px;
+    padding: 14px 16px;
+    gap: 10px;
+    font-size: 16px;
     letter-spacing: 0.08em;
   }
 
   .faq-section__challenge-arrow {
+    flex-basis: 18px;
     width: 18px;
     height: 18px;
     font-size: 22px;
+  }
+
+  .faq-section__cta {
+    margin-top: 36px;
   }
 
   .faq-section__btn {
@@ -284,58 +372,40 @@
   }
 }
 
-@media (max-width: 600px) {
+/* =========================================
+   EXTRA-SMALL PHONES
+   ========================================= */
+
+@media (max-width: 360px) {
+  .faq-section {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
   .faq-section__dev-challenges {
-    width: 100%;
-    min-width: 0;
-    margin-top: 36px;
-    padding: 20px 14px 18px;
-    box-sizing: border-box;
-  }
-
-  .faq-section__dev-challenges-header h2 {
-    font-size: clamp(30px, 8vw, 42px);
-    line-height: 1;
-    overflow-wrap: break-word;
-  }
-
-  .faq-section__challenge-list {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-    width: 100%;
-    min-width: 0;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 
   .faq-section__challenge-link {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-    min-height: 76px;
-    padding: 14px 16px;
-    gap: 10px;
-    font-size: 16px;
-    letter-spacing: 0.08em;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
   }
 
-  .faq-section__challenge-text {
-    min-width: 0;
-    overflow-wrap: anywhere;
-  }
-
-  .faq-section__challenge-arrow {
-    flex-shrink: 0;
+  .faq-section__description p {
+    font-size: 19px;
   }
 }
 
-/* Extra-small phones */
-@media (max-width: 360px) {
-  .faq-section__dev-challenges {
-    padding-inline: 10px;
-  }
+/* Respect reduced-motion preferences */
 
-  .faq-section__challenge-link {
-    padding-inline: 10px;
-    font-size: 14px;
-    letter-spacing: 0.05em;
+@media (prefers-reduced-motion: reduce) {
+  .faq-section__challenge-link,
+  .faq-section__challenge-text,
+  .faq-section__challenge-arrow,
+  .faq-section__btn {
+    transition: none;
   }
 }
