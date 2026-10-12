@@ -502,7 +502,6 @@
   bottom: 0;
   display: flex;
   justify-content: center;
-  transform: translateX(calc(var(--u) * 30));
   pointer-events: none;
 }
 
@@ -623,6 +622,12 @@
     gap: calc(var(--u) * 40);
   }
 
+  .hero-right {
+    align-items: center;
+    gap: calc(var(--u) * 18);
+    margin-top: calc(var(--u) * 8);
+  }
+
   .presents-line {
     margin-left: calc(var(--u) * 14);
   }
@@ -654,6 +659,14 @@
     position: relative;
     margin-top: calc(var(--u) * 30);
     transform: translateX(calc(var(--u) * 15));
+  }
+
+  .date-block {
+    margin-top: 0;
+  }
+
+  .hero-register {
+    margin-top: calc(var(--u) * 8);
   }
 
   /* everything the shadows add must stay inside the screen */

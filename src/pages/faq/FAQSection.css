@@ -116,14 +116,14 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 62px;
-  padding: 16px 18px;
+  min-height: 50px;
+  padding: 11px 14px;
   background: var(--accent-red);
   border: 2.5px solid var(--btn-border);
   color: var(--text-white);
   text-decoration: none;
   font-family: var(--font-body);
-  font-size: clamp(18px, 1.3vw, 24px);
+  font-size: clamp(15px, 1.1vw, 20px);
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -147,12 +147,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border: none;
   transform: scale(1);
   transition: transform 0.2s ease;
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
   line-height: 1;
   flex-shrink: 0;
@@ -265,8 +265,77 @@
     margin-top: 36px;
   }
 
+  .faq-section__challenge-link {
+    min-height: 44px;
+    padding: 9px 11px;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  .faq-section__challenge-arrow {
+    width: 18px;
+    height: 18px;
+    font-size: 22px;
+  }
+
   .faq-section__btn {
     padding: 12px 28px;
     font-size: 13px;
+  }
+}
+
+@media (max-width: 600px) {
+  .faq-section__dev-challenges {
+    width: 100%;
+    min-width: 0;
+    margin-top: 36px;
+    padding: 20px 14px 18px;
+    box-sizing: border-box;
+  }
+
+  .faq-section__dev-challenges-header h2 {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1;
+    overflow-wrap: break-word;
+  }
+
+  .faq-section__challenge-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .faq-section__challenge-link {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    min-height: 76px;
+    padding: 14px 16px;
+    gap: 10px;
+    font-size: 16px;
+    letter-spacing: 0.08em;
+  }
+
+  .faq-section__challenge-text {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .faq-section__challenge-arrow {
+    flex-shrink: 0;
+  }
+}
+
+/* Extra-small phones */
+@media (max-width: 360px) {
+  .faq-section__dev-challenges {
+    padding-inline: 10px;
+  }
+
+  .faq-section__challenge-link {
+    padding-inline: 10px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
   }
 }
