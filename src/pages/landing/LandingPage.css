@@ -239,7 +239,8 @@
 }
 
 .partner__logo--digitalocean {
-  width: calc(var(--u) * 300);
+  width: calc(var(--u) * 260);
+  height: calc(var(--u) * 38);
 }
 
 .partner__img {
@@ -250,11 +251,16 @@
 
 .partner__logo--mlh .partner__img {
   width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 .partner__logo--digitalocean .partner__img {
   width: 100%;
-  clip-path: inset(calc(var(--u) * 7));
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* MLH stand-in */
