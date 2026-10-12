@@ -29,7 +29,8 @@
 }
 
 html {
-  scroll-behavior: smooth; /* navbar anchor links */
+  scroll-behavior: smooth;
+  /* navbar anchor links */
 }
 
 html,
@@ -44,8 +45,10 @@ body {
   /* Neutral fallback — sections paint over this */
   background-color: #1a1a1a;
   /* Hide scrollbar across browsers */
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE / Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE / Edge */
 }
 
 html::-webkit-scrollbar,
@@ -99,6 +102,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }

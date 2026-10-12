@@ -199,14 +199,17 @@
 }
 
 @keyframes actsLogoCrossfade {
+
   0%,
   39% {
     opacity: 0;
   }
+
   50%,
   89% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -214,6 +217,7 @@
 
 /* ---------------- REDUCED MOTION ---------------- */
 @media (prefers-reduced-motion: reduce) {
+
   .interactive-hover-btn-root,
   .interactive-hover-btn-text,
   .interactive-hover-btn-badge {

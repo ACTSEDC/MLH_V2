@@ -4,6 +4,7 @@
     opacity: 0;
     transform: translateY(-100%);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -15,6 +16,7 @@
     opacity: 0;
     transform: translateY(-8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -214,9 +216,11 @@
   .navbar {
     padding: 10px 24px;
   }
+
   .nav-links {
     gap: 14px;
   }
+
   .nav-links a {
     font-size: 11px;
     letter-spacing: 0.8px;
@@ -229,21 +233,26 @@
     position: sticky;
     display: block;
   }
+
   .navbar-header-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
+
   .mobile-menu-btn {
     display: flex;
   }
+
   .nav-links {
     display: none;
   }
+
   .logo-text {
     font-size: 18px;
   }
+
   .logo-badge {
     font-size: 12px;
     padding: 1px 6px;
@@ -254,9 +263,11 @@
   .navbar {
     padding: 8px 14px;
   }
+
   .logo-text {
     font-size: 16px;
   }
+
   .logo-badge {
     font-size: 11px;
     padding: 1px 5px;
