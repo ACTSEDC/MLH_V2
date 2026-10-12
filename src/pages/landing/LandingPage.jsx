@@ -1,5 +1,11 @@
+import { motion, MotionConfig } from "framer-motion";
 import { InteractiveHoverButton } from "./InteractiveHoverButton";
 import { ActsLogoTransition } from "./ActsLogoTransition";
+import { OrgLine, PresentsLine, Wordmark } from "./HeroText";
+import Partners from "./Partners";
+import DateBlock from "./DateBlock";
+import Building from "./Building";
+import { slideRight, popRotate } from "./heroMotion";
 import "./LandingPage.css";
 
 const REGISTER_URL =
@@ -7,40 +13,47 @@ const REGISTER_URL =
 
 export default function LandingPage() {
   return (
-    <div className="figma-vector-wrapper" id="hero">
-      <div className="artwork-container">
-        {/* Figma export lives in /public/hacktoberfest_full.svg */}
-        <object
-          data="/hacktoberfest_full.svg"
-          type="image/svg+xml"
-          className="figma-master-canvas"
-          aria-label="Hacktoberfest 2026 Official Figma Landing Page"
-        >
-          <img
-            src="/hacktoberfest_full.svg"
-            alt="Hacktoberfest 2026 Design"
-            className="figma-master-canvas"
-          />
-        </object>
+    <MotionConfig reducedMotion="user">
+      <section className="hero" id="hero" aria-label="Hacktoberfest 2026">
+        {/* "visible" flows down to every child that has variants */}
+        <motion.div className="hero-stage" initial="hidden" animate="visible">
+          <div className="hero-canvas">
+            <div className="hero-top">
+              <div className="hero-left">
+                <OrgLine />
+                <PresentsLine />
+                <Wordmark />
+                <Partners />
+              </div>
 
-        {/* Clickable overlay aligned with the REGISTER NOW button in the artwork */}
-        <div className="hero-register-btn-wrapper">
-          <InteractiveHoverButton
-            href={REGISTER_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-register-btn"
-            title="Register for Hacktoberfest 26"
-          >
-            REGISTER NOW
-          </InteractiveHoverButton>
-        </div>
+              <div className="hero-right">
+                <motion.div className="hero-logo" variants={popRotate(0.9)}>
+                  <ActsLogoTransition />
+                </motion.div>
 
-        {/* ACTS logo theme transition, hero top-right */}
-        <div className="hero-acts-logo-wrapper">
-          <ActsLogoTransition />
-        </div>
-      </div>
-    </div>
+                <DateBlock />
+
+                <motion.div
+                  className="hero-register"
+                  variants={slideRight(0.5)}
+                >
+                  <InteractiveHoverButton
+                    href={REGISTER_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hero-register-btn"
+                    title="Register for Hacktoberfest 26"
+                  >
+                    REGISTER NOW
+                  </InteractiveHoverButton>
+                </motion.div>
+              </div>
+            </div>
+
+            <Building />
+          </div>
+        </motion.div>
+      </section>
+    </MotionConfig>
   );
 }

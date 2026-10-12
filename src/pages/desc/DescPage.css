@@ -1,7 +1,7 @@
 /* ---------------- ABOUT HACKTOBERFEST SECTION ---------------- */
 .about-section {
   width: 100%;
-  max-width: 1920px;
+  max-width: none;
   margin-inline: auto;
   background-color: #f2f2eb;
   border-top: 4px solid #231f20;
