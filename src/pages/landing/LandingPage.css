@@ -1,36 +1,398 @@
-/* ---------------- CANVAS & FIGMA VECTOR WRAPPER ---------------- */
-.figma-vector-wrapper {
-  width: 100%;
-  max-width: 1920px;
-  margin-inline: auto;
-  position: relative;
-  background: var(--color-canvas);
-}
+/* ==========================================================================
+   Hero — built from real components.
+   Everything is sized in "design units" (--u): 1u = 1px of a 1920 x 900 design.
+   --u shrinks/grows with the screen, so the layout scales like the artwork did,
+   and the hero is never taller than the visible screen.
+   ========================================================================== */
 
-.artwork-container {
-  width: 100%;
+.hero {
+  /* approx. navbar height: adjust if yours differs */
+  --navbar-h: 52px;
+
   position: relative;
-  aspect-ratio: 1920 / 1205;
+  width: 100%;
+  height: max(calc(100vh - var(--navbar-h)), calc(100vw * 0.46875));
+  min-height: 480px;
   overflow: hidden;
   background: #3d5f58;
+  container-type: size;
 }
 
-.figma-master-canvas {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: none;
+@supports (height: 100svh) {
+  .hero {
+    height: max(calc(100svh - var(--navbar-h)), calc(100vw * 0.46875));
+  }
 }
 
-/* ---------------- INTERACTIVE REGISTRATION BUTTON ---------------- */
-.hero-register-btn-wrapper {
+.hero-stage {
+  /* 1 design pixel, in real pixels (the smaller of the width- and height-fit) */
+  --u: min(calc(100cqw / 1920), calc(100cqh / 900));
+
+  /* ---- knobs (design units): change these to resize things ---- */
+  --pad-x: 110; /* left/right spacing */
+  --pad-top: 64; /* top spacing */
+  --org: 22; /* university line */
+  --pres: 25; /* ACTS EDC PRESENTS */
+  --wm: 104; /* HACKTØBERFEST size */
+  --label: 15; /* POWERED BY / PRESENTING PARTNER */
+  --num: 235; /* the "21" */
+  --st: 62; /* "ST" */
+  --oct: 42; /* OCTOBER */
+  --logo: 92; /* ACTS logo */
+  --btn-w: 245; /* register button */
+  --btn-h: 58;
+  --bld-w: 1350; /* building width */
+
   position: absolute;
-  left: 74.3%;
-  top: 42.9%;
-  width: 17.4%;
-  height: 7.06%;
-  z-index: 60;
+  inset: 0;
+  font-family:
+    "Barlow Condensed", "Bebas Neue", Impact, "Arial Narrow", sans-serif;
+  color: #fff;
+}
+
+.hero-canvas {
+  position: relative;
+  width: calc(var(--u) * 1920);
+  height: calc(var(--u) * 900);
+  margin-inline: auto;
+}
+
+.hero-top {
+  position: absolute;
+  inset: 0 0 auto 0;
   display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: calc(var(--u) * var(--pad-top)) calc(var(--u) * var(--pad-x)) 0;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ---------------- Org line ---------------- */
+.org-line {
+  display: flex;
+  align-items: stretch;
+  gap: calc(var(--u) * 26);
+}
+
+.org-line__bar {
+  width: calc(var(--u) * 5);
+  background: #ff4e51;
+}
+
+.org-line__text {
+  font-size: calc(var(--u) * var(--org));
+  font-weight: 700;
+  line-height: 1.08;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+/* ---------------- ACTS EDC PRESENTS ---------------- */
+.presents-line {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 18);
+  margin: calc(var(--u) * 38) 0 0 calc(var(--u) * 28);
+}
+
+.presents-line__rule {
+  display: block;
+  width: calc(var(--u) * 90);
+  height: calc(var(--u) * 4);
+  background: #ffd000;
+  transform-origin: left center;
+}
+
+.presents-line__rule--right {
+  width: calc(var(--u) * 80);
+  transform-origin: right center;
+}
+
+.presents-line__text {
+  font-size: calc(var(--u) * var(--pres));
+  font-weight: 800;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---------------- Wordmark ---------------- */
+.wordmark {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: calc(var(--u) * 22);
+  margin-top: calc(var(--u) * 26);
+  /* Dark-green outline built with chained drop-shadows on the whole word, so
+     neighbouring letters can never paint over each other's edges */
+  --ow: calc(var(--u) * 8);
+}
+
+.wordmark__text {
+  --c: #07463c;
+  display: flex;
+  font-size: calc(var(--u) * var(--wm));
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0.012em;
+  color: #fff;
+  filter: drop-shadow(var(--ow) 0 0 var(--c))
+    drop-shadow(calc(var(--ow) * -1) 0 0 var(--c))
+    drop-shadow(0 var(--ow) 0 var(--c))
+    drop-shadow(0 calc(var(--ow) * -1) 0 var(--c))
+    drop-shadow(0 0 calc(var(--u) * 14) rgba(0, 0, 0, 0.25));
+}
+
+.wordmark__letter {
+  display: inline-block;
+  cursor: default;
+  transition:
+    translate 0.2s ease-out,
+    rotate 0.2s ease-out;
+}
+
+.wordmark__letter:hover {
+  translate: 0 -0.07em;
+  rotate: -4deg;
+}
+
+.wordmark__badge {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  padding: calc(var(--u) * 6) calc(var(--u) * 20);
+  font-size: calc(var(--u) * var(--wm) * 0.72);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  background: #07463c;
+  border: calc(var(--u) * 6) solid #f2f2eb;
+  border-radius: calc(var(--u) * 22);
+  box-shadow: 0 0 0 calc(var(--u) * 7) #07463c;
+  transition:
+    scale 0.2s ease-out,
+    rotate 0.2s ease-out;
+  cursor: default;
+}
+
+.wordmark__badge:hover {
+  scale: 1.08;
+  rotate: -4deg;
+}
+
+/* ---------------- Partners ---------------- */
+.partners {
+  display: flex;
+  gap: calc(var(--u) * 32);
+  margin: calc(var(--u) * 34) 0 0 calc(var(--u) * 28);
+}
+
+.partner__label {
+  margin-bottom: calc(var(--u) * 10);
+  font-size: calc(var(--u) * var(--label) * 0.9);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #d5e2de;
+}
+
+.partner__badge {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 10);
+  height: calc(var(--u) * 64);
+  padding: 0 calc(var(--u) * 16);
+  background: #fff;
+  color: #1f2724;
+  border: calc(var(--u) * 4) solid #1f2724;
+  border-radius: calc(var(--u) * 16);
+  box-shadow: calc(var(--u) * 5) calc(var(--u) * 5) 0 #1f2724;
+  transition:
+    translate 0.18s ease-out,
+    box-shadow 0.18s ease-out;
+}
+
+.partner__badge:hover {
+  translate: calc(var(--u) * -3) calc(var(--u) * -3);
+  box-shadow: calc(var(--u) * 8) calc(var(--u) * 8) 0 #1f2724;
+}
+
+.partner__logo {
+  display: block;
+  height: calc(var(--u) * 44);
+  overflow: hidden;
+  position: relative;
+}
+
+.partner__logo--mlh {
+  width: calc(var(--u) * 170);
+}
+
+.partner__logo--digitalocean {
+  width: calc(var(--u) * 260);
+  height: calc(var(--u) * 38);
+}
+
+.partner__img {
+  display: block;
+  height: auto;
+  width: auto;
+}
+
+.partner__logo--mlh .partner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.partner__logo--digitalocean .partner__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* MLH stand-in */
+.mlh-word {
+  display: inline-flex;
+  font-size: calc(var(--u) * 52);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.mlh-m {
+  color: #e53927;
+}
+.mlh-l {
+  color: #4a78c9;
+}
+.mlh-h {
+  color: #f5b726;
+}
+
+.mlh-term {
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 50);
+  height: calc(var(--u) * 42);
+  color: #fff;
+  background: #1f2724;
+  border-radius: calc(var(--u) * 8);
+}
+.mlh-term svg {
+  width: 62%;
+  height: 62%;
+}
+
+/* DigitalOcean stand-in */
+.do-mark {
+  width: calc(var(--u) * 40);
+  height: calc(var(--u) * 40);
+}
+.do-text {
+  font-size: calc(var(--u) * 36);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #1f2724;
+}
+
+/* ---------------- ACTS logo ---------------- */
+.hero-logo {
+  align-self: flex-end;
+  width: calc(var(--u) * var(--logo));
+  height: calc(var(--u) * var(--logo));
+}
+
+/* ---------------- 21st OCTOBER ---------------- */
+.date-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: calc(var(--u) * 10);
+}
+
+.date-block__num {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  font-size: calc(var(--u) * var(--num));
+  font-weight: 900;
+  line-height: 0.8;
+  color: #f2f2eb;
+  -webkit-text-stroke: calc(var(--u) * 6) #231f20;
+  paint-order: stroke fill;
+  /* layered colour echo (yellow, coral, blue) */
+  text-shadow:
+    calc(var(--u) * 9) calc(var(--u) * 9) 0 #f5b726,
+    calc(var(--u) * 18) calc(var(--u) * 18) 0 #e97b77,
+    calc(var(--u) * 27) calc(var(--u) * 27) 0 #8bb2de;
+}
+
+.date-block__st {
+  margin: calc(var(--u) * -4) 0 0 calc(var(--u) * 14);
+  font-size: calc(var(--u) * var(--st));
+  line-height: 1;
+  vertical-align: top;
+  text-shadow:
+    calc(var(--u) * 5) calc(var(--u) * 5) 0 #f5b726,
+    calc(var(--u) * 10) calc(var(--u) * 10) 0 #8bb2de;
+}
+
+.date-block__month {
+  margin-top: calc(var(--u) * 34);
+  font-size: calc(var(--u) * var(--oct));
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: #f2f2eb;
+  text-transform: uppercase;
+}
+
+/* ---------------- Register button ---------------- */
+.hero-register {
+  position: relative;
+  display: flex;
+  width: calc(var(--u) * var(--btn-w));
+  height: calc(var(--u) * var(--btn-h));
+  margin-top: calc(var(--u) * 34);
+}
+
+/* Soft ring: appears, pulses once and disappears (opacity is 0 before and after) */
+.hero-register::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid #facf28;
+  border-radius: calc(var(--u) * 16);
+  pointer-events: none;
+  opacity: 0;
+  animation: heroBtnRing 1.4s ease-out 1.8s 1 forwards;
+}
+
+@keyframes heroBtnRing {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  15% {
+    opacity: 0.9;
+    transform: scale(1.03, 1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.22, 1.45);
+  }
 }
 
 .hero-register-btn {
@@ -41,20 +403,14 @@
   position: relative;
 }
 
-.hero-register-btn::before {
-  content: "";
-  position: absolute;
-  inset: -8px -6px;
-}
-
 .interactive-hover-btn-root {
   background-color: #e07a74;
   color: #231f20;
-  border: clamp(1.5px, 0.2vw, 3px) solid #231f20;
-  border-radius: clamp(6px, 0.8vw, 13px);
-  box-shadow: clamp(2px, 0.28vw, 4px) clamp(2px, 0.28vw, 4px) 0px #231f20;
+  border: max(2px, calc(var(--u) * 4)) solid #231f20;
+  border-radius: calc(var(--u) * 16);
+  box-shadow: calc(var(--u) * 7) calc(var(--u) * 7) 0 #231f20;
   font-weight: 800;
-  font-size: clamp(8px, 0.95vw, 17px);
+  font-size: max(11px, calc(var(--u) * 24));
   letter-spacing: 0.04em;
   text-transform: uppercase;
   font-family: "Space Grotesk", inherit;
@@ -75,15 +431,15 @@
 }
 
 .interactive-hover-btn-root:hover {
-  transform: translate(-1.5px, -1.5px);
-  box-shadow: clamp(3px, 0.35vw, 6px) clamp(3px, 0.35vw, 6px) 0px #231f20;
+  transform: translate(-2px, -2px);
+  box-shadow: calc(var(--u) * 10) calc(var(--u) * 10) 0 #231f20;
   background-color: #2c4741;
   color: #f2f2eb;
 }
 
 .interactive-hover-btn-root:active {
   transform: translate(1px, 1px);
-  box-shadow: clamp(1px, 0.15vw, 2px) clamp(1px, 0.15vw, 2px) 0px #231f20;
+  box-shadow: calc(var(--u) * 3) calc(var(--u) * 3) 0 #231f20;
 }
 
 .interactive-hover-btn-root:focus-visible {
@@ -97,80 +453,91 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
   width: 100%;
-  padding: 0 0.25rem;
+  padding-inline: 0.5rem;
 }
 
 .interactive-hover-btn-text {
   white-space: nowrap;
-  letter-spacing: 0;
+  letter-spacing: 0.05em;
   transition: color 0.3s ease;
-}
-
-.interactive-hover-btn-badge {
-  flex-shrink: 0;
-  padding: 0.125rem;
 }
 
 .interactive-hover-btn-root:hover .interactive-hover-btn-text {
   color: #f2f2eb;
 }
 
-.interactive-hover-btn-root:hover .interactive-hover-btn-badge {
-  transform: translateX(0.25rem);
-}
-
 .interactive-hover-btn-badge {
+  flex-shrink: 0;
+  padding: 0.25rem;
   background-color: #ffffff;
-  border-radius: clamp(2px, 0.3vw, 4px);
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 1px 0px rgba(35, 31, 32, 0.35);
+  box-shadow: 1px 1px 0 rgba(35, 31, 32, 0.35);
   transition:
     transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
     background-color 0.2s ease;
 }
 
+.interactive-hover-btn-root:hover .interactive-hover-btn-badge {
+  transform: translateX(0.25rem);
+}
+
 .interactive-hover-btn-arrow {
-  width: clamp(10px, 0.9vw, 15px);
-  height: clamp(10px, 0.9vw, 15px);
+  width: max(12px, calc(var(--u) * 22));
+  height: max(12px, calc(var(--u) * 22));
   stroke-width: 3px;
   color: #231f20;
   display: block;
 }
 
-@media (min-width: 640px) {
-  .interactive-hover-btn-content {
-    gap: 0.5rem;
-    padding-inline: 0.5rem;
-  }
-
-  .interactive-hover-btn-text {
-    letter-spacing: 0.05em;
-  }
-
-  .interactive-hover-btn-badge {
-    border-radius: 4px;
-    padding: 0.25rem;
-  }
-}
-
-/* ---------------- ACTS LOGO THEME TRANSITION ---------------- */
-.hero-acts-logo-wrapper {
+/* ---------------- Building (the only image) ---------------- */
+.building-wrap {
   position: absolute;
-  left: 90.26%;
-  top: 4.07%;
-  width: 5.99%;
-  height: 9.21%;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
+  transform: translateX(calc(var(--u) * 30));
   pointer-events: none;
 }
 
+.building {
+  position: relative;
+  width: calc(var(--u) * var(--bld-w));
+  aspect-ratio: var(--ratio, 2.2);
+  overflow: hidden;
+  pointer-events: auto;
+  transform-origin: 50% 100%;
+  transition: scale 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.building:hover {
+  scale: 1.02;
+}
+
+.building img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+}
+
+/* Only used if the image can't be measured */
+.building--plain {
+  aspect-ratio: auto;
+}
+.building--plain img {
+  position: static;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------------- ACTS logo crossfade ---------------- */
 .acts-logo-transition-container {
   position: relative;
   width: 100%;
@@ -199,33 +566,122 @@
 }
 
 @keyframes actsLogoCrossfade {
-
   0%,
   39% {
     opacity: 0;
   }
-
   50%,
   89% {
     opacity: 1;
   }
-
   100% {
     opacity: 0;
   }
 }
 
-/* ---------------- REDUCED MOTION ---------------- */
-@media (prefers-reduced-motion: reduce) {
+/* ==========================================================================
+   Mobile / small screens: stack everything, scale from the screen width
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    container-type: inline-size;
+  }
 
-  .interactive-hover-btn-root,
-  .interactive-hover-btn-text,
-  .interactive-hover-btn-badge {
-    transition: none !important;
+  .hero-stage {
+    position: relative;
+    inset: auto;
+    --u: calc(100cqw / 600);
+
+    --pad-x: 20;
+    --pad-top: 30;
+    --org: 18;
+    --pres: 22;
+    --wm: 62;
+    --label: 16;
+    --num: 140;
+    --st: 42;
+    --oct: 33;
+    --logo: 58;
+    --btn-w: 240;
+    --btn-h: 54;
+    --bld-w: 820; /* building width */
+  }
+
+  .hero-canvas {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-top {
+    position: static;
+    flex-direction: column;
+    align-items: stretch;
+    gap: calc(var(--u) * 40);
+  }
+
+  .presents-line {
+    margin-left: calc(var(--u) * 14);
+  }
+  .presents-line__rule {
+    width: calc(var(--u) * 40);
+  }
+  .presents-line__rule--right {
+    width: calc(var(--u) * 30);
+  }
+
+  .wordmark {
+    flex-wrap: wrap;
+    row-gap: calc(var(--u) * 14);
+  }
+
+  .partners {
+    flex-wrap: wrap;
+    margin-left: 0;
+    row-gap: calc(var(--u) * 24);
+  }
+
+  .hero-logo {
+    position: absolute;
+    top: calc(var(--u) * 30);
+    right: calc(var(--u) * 30);
+  }
+
+  .building-wrap {
+    position: relative;
+    margin-top: calc(var(--u) * 30);
+    transform: translateX(calc(var(--u) * 15));
+  }
+
+  /* everything the shadows add must stay inside the screen */
+  .date-block__num {
+    text-shadow:
+      calc(var(--u) * 6) calc(var(--u) * 6) 0 #f5b726,
+      calc(var(--u) * 12) calc(var(--u) * 12) 0 #e97b77,
+      calc(var(--u) * 18) calc(var(--u) * 18) 0 #8bb2de;
+  }
+}
+
+/* ---------------- Reduced motion ---------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-register::after {
+    animation: none !important;
   }
 
   .acts-logo-alt {
     animation: none !important;
     opacity: 0 !important;
+  }
+
+  .interactive-hover-btn-root,
+  .interactive-hover-btn-text,
+  .interactive-hover-btn-badge,
+  .wordmark__letter,
+  .partner__badge,
+  .building {
+    transition: none !important;
   }
 }
