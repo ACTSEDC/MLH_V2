@@ -2,9 +2,6 @@ import { motion, MotionConfig } from "framer-motion";
 import { SPONSORS_CONFIG } from "../../data/sponsorsData.js";
 import "./SponsorsPage.css";
 
-/* =========================================
-   Animation variants
-   ========================================= */
 const fadeUp = (delay = 0) => ({
   hidden: { opacity: 0, y: 20 },
   visible: {
@@ -14,7 +11,6 @@ const fadeUp = (delay = 0) => ({
   },
 });
 
-/* Whole tier card slides up with a soft spring */
 const cardVariant = (delay = 0) => ({
   hidden: { opacity: 0, y: 56, scale: 0.96 },
   visible: {
@@ -25,7 +21,6 @@ const cardVariant = (delay = 0) => ({
   },
 });
 
-/* Pop: scale from 0 with a springy overshoot */
 const pop = (delay = 0) => ({
   hidden: { opacity: 0, scale: 0 },
   visible: {
@@ -35,7 +30,6 @@ const pop = (delay = 0) => ({
   },
 });
 
-/* Pop + rotate (logos) */
 const popRotate = (delay = 0, from = -20) => ({
   hidden: { opacity: 0, scale: 0, rotate: from },
   visible: {
@@ -46,7 +40,6 @@ const popRotate = (delay = 0, from = -20) => ({
   },
 });
 
-/* Red lines draw out from the left */
 const drawRule = (delay = 0) => ({
   hidden: { scaleX: 0 },
   visible: {
@@ -55,16 +48,11 @@ const drawRule = (delay = 0) => ({
   },
 });
 
-/**
- * SponsorsPage Component
- * Renders the exact neo-brutalist sponsor showcase using semantic list items.
- */
 export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
   return (
     <MotionConfig reducedMotion="user">
       <section className="sponsors-container">
         <div className="sponsors-wrapper">
-          {/* Header Row */}
           <motion.header
             className="sponsors-header"
             initial="hidden"
@@ -84,25 +72,23 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
             />
           </motion.header>
 
-          {/* Sponsor Tier List (ul > li) */}
           <ul className="sponsors-cards-list">
             {tiers.map((tier) => {
               const hasSponsors = tier.sponsors && tier.sponsors.length > 0;
               const isSingleLogo = tier.sponsors?.length === 1;
-              // Each card's own scroll trigger fires separately, so a
-              // small base delay is enough; children offset from it.
               const base = 0.1;
 
               return (
                 <motion.li
                   key={tier.id}
-                  className={`sponsor-card tier-${tier.id}`}
+                  className={`sponsor-card tier-${tier.id} ${
+                    hasSponsors ? "" : "sponsor-card--hidden"
+                  }`}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-60px" }}
                   variants={cardVariant(base)}
                 >
-                  {/* Left Column: Tier Info */}
                   <div className="sponsor-meta-col">
                     <motion.span
                       className={`sponsor-tier-badge badge-${tier.id}`}
@@ -111,13 +97,11 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
                     >
                       {tier.tierLabel}
                     </motion.span>
-
                     <motion.div
                       className="sponsor-red-line"
                       variants={drawRule(base + 0.45)}
                       style={{ transformOrigin: "left center" }}
                     />
-
                     <motion.p
                       className="sponsor-tier-subtitle"
                       variants={fadeUp(base + 0.55)}
@@ -126,7 +110,6 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
                     </motion.p>
                   </div>
 
-                  {/* Right Column: Sponsor Logos */}
                   <div
                     className={`sponsor-logos-area ${isSingleLogo ? "centered" : ""}`}
                   >
@@ -149,11 +132,6 @@ export default function SponsorsPage({ tiers = SPONSORS_CONFIG }) {
   );
 }
 
-/**
- * SponsorLogoItem Helper Component
- * The wrapper (link/div) does the pop-in; the <img> keeps its CSS hover,
- * so the two transforms never fight.
- */
 function SponsorLogoItem({ sponsor, delay = 0 }) {
   const logoContent = (
     <img
