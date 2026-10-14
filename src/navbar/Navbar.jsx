@@ -26,7 +26,6 @@ export default function Navbar() {
           <span className="logo-badge">26</span>
         </a>
 
-        {/* Mobile Hamburger Toggle Button */}
         <button
           type="button"
           className="mobile-menu-btn"
@@ -38,7 +37,6 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Desktop Navigation Links */}
       <ul className="nav-links">
         {NAV_LINKS.map(([label, href]) => (
           <li key={href}>
@@ -57,13 +55,8 @@ export default function Navbar() {
         </li>
       </ul>
 
-      {/* Mobile Dropdown Drawer */}
       {mobileMenuOpen && (
-        <div
-          className="mobile-nav-drawer"
-          role="dialog"
-          aria-label="Mobile Navigation"
-        >
+        <div className="mobile-nav-drawer" role="dialog" aria-label="Mobile Navigation">
           <ul className="mobile-nav-links">
             {NAV_LINKS.map(([label, href]) => (
               <li key={href}>

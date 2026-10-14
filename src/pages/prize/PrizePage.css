@@ -19,7 +19,6 @@
   padding: 72px 32px 88px;
   box-sizing: border-box;
 }
-
 /* ---- Shared max-width container (matches Sponsors 1400px) ---- */
 .prize-wrapper {
   max-width: 1400px;
@@ -77,7 +76,7 @@
    Yellow tagline callout box — RIGHT COLUMN of prize-content-row
    flex: 0 0 260px gives fixed width; parent's align-items:stretch
    makes it grow to match the full height of the cards column.
-   Same #FFC900 + border + shadow as .prize-special-amount
+   Same #FFC900 + border + shadow as the goodies chip
    ========================================================================== */
 .prize-tagline-box {
   flex: 0 0 260px; /* fixed width on desktop */
@@ -217,6 +216,45 @@
   margin: 6px 0 0 0;
 }
 
+/* Reward tags keep every prize detail readable without making the cards feel dense. */
+.prize-reward-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.prize-reward-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  padding: 6px 10px;
+  border: 2px solid #3d5f58;
+  background: #f8f7ee;
+  color: #231f20;
+  font-family: "Barlow", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0.015em;
+  box-shadow: 2px 2px 0 #3d5f58;
+}
+
+.prize-reward-list--prominent .prize-reward-tag {
+  border-color: #8c7000;
+  background: #fff3a8;
+  box-shadow: 2px 2px 0 #231f20;
+}
+
+.prize-reward-check {
+  color: #3d5f58;
+  font-size: 1rem;
+  font-weight: 900;
+}
+
 /* Trophy */
 .prize-trophy-wrap {
   flex-shrink: 0;
@@ -308,6 +346,10 @@
   margin: 6px 0 0 0;
 }
 
+.prize-runner-card .prize-reward-list {
+  margin-top: 12px;
+}
+
 /* Medal SVG */
 .prize-medal-wrap {
   flex-shrink: 0;
@@ -324,9 +366,9 @@
 }
 
 /* ==========================================================================
-   Special Contribution Award banner
+   Goodies for every participant banner
    ========================================================================== */
-.prize-special-banner {
+.prize-goodies-banner {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -340,13 +382,13 @@
   box-sizing: border-box;
 }
 
-.prize-special-text-group {
+.prize-goodies-text-group {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.prize-special-label {
+.prize-goodies-label {
   font-family: "Barlow Condensed", sans-serif;
   font-size: 2.5rem;
   font-weight: 900;
@@ -356,7 +398,7 @@
   margin: 0;
 }
 
-.prize-special-sub {
+.prize-goodies-sub {
   font-family: "Barlow", sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
@@ -364,8 +406,8 @@
   margin: 0;
 }
 
-/* Highlighted amount chip */
-.prize-special-amount {
+/* Highlighted participant-rewards chip */
+.prize-goodies-chip {
   flex-shrink: 0;
   font-family: "Barlow Condensed", "Impact", sans-serif;
   font-size: clamp(1.1rem, 2vw, 1.4rem);
@@ -381,13 +423,13 @@
   display: inline-block;
 }
 
-.prize-special-amount {
+.prize-goodies-chip {
   transition:
     scale 0.18s ease-out,
     rotate 0.18s ease-out;
 }
 
-.prize-special-amount:hover {
+.prize-goodies-chip:hover {
   scale: 1.08;
   rotate: -2deg;
 }
@@ -458,10 +500,10 @@
     height: 80px;
   }
 
-  /* Runner cards: keep side-by-side but reduce padding */
+  /* Runner cards stack on mobile so every reward stays readable. */
   .prize-runner-row {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .prize-runner-inner {
@@ -476,32 +518,15 @@
     height: 52px;
   }
 
-  /* Banner stacks vertically */
-  .prize-special-banner {
+  /* Goodies banner stacks vertically */
+  .prize-goodies-banner {
     flex-direction: column;
     align-items: flex-start;
     gap: 14px;
     padding: 20px 20px;
   }
 
-  .prize-special-amount {
+  .prize-goodies-chip {
     align-self: flex-start;
-  }
-}
-
-/* ==========================================================================
-   Responsive — Very small (≤ 400px) — runner cards go full-width stack
-   ========================================================================== */
-@media (max-width: 400px) {
-  .prize-runner-row {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .prize-runner-inner {
-    flex-direction: row;
-    align-items: center;
-    padding: 18px 20px;
-    gap: 16px;
   }
 }

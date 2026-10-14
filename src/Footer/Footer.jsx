@@ -1,6 +1,7 @@
 import './Footer.css';
 import instagramIcon from '../assets/logos/Instagram.svg';
 import linkedinIcon from '../assets/logos/linkedin.svg';
+import linktreeIcon from '../assets/logos/linktree.svg';
 import { ActsLogoTransition } from '../pages/landing/ActsLogoTransition';
 
 export default function Footer() {
@@ -30,6 +31,14 @@ export default function Footer() {
             rel="noopener noreferrer"
           >
             <img src={linkedinIcon} alt="LinkedIn" />
+            <span>ACTS EDC</span>
+          </a>
+          <a
+            href="https://linktr.ee/acts_edc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img src={linktreeIcon} alt="Linktree" />
             <span>ACTS EDC</span>
           </a>
         </nav>

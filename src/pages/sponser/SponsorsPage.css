@@ -122,9 +122,11 @@
 .sponsor-card.tier-gold:hover {
   box-shadow: 9px 13px 0px #ffd000;
 }
+
 .sponsor-card.tier-silver:hover {
   box-shadow: 9px 13px 0px #c5cbd3;
 }
+
 .sponsor-card.tier-bronze:hover {
   box-shadow: 9px 13px 0px #cb7b2c;
 }
@@ -216,12 +218,38 @@
   text-decoration: none;
 }
 
-/* Silver tier: bordered rectangular box around each logo (per Figma reference) */
+/* Silver tier: outer box (border + neo-brutalist drop shadow) */
 .sponsor-card.tier-silver .sponsor-logo-link {
-  border: 1.5px solid #c8cdd5;
-  padding: 14px 28px;
+  position: relative;
+  border: 2px solid #000000;
+  box-shadow: 5px 5px 0px #000000;
+  padding: 18px 32px;
   min-width: 160px;
   min-height: 64px;
+  background: #ffffff;
+  transition:
+    box-shadow 0.15s ease,
+    translate 0.15s ease;
+}
+
+/* Inner inset border — the "box inside box" effect */
+.sponsor-card.tier-silver .sponsor-logo-link::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border: 1.5px solid #000000;
+  pointer-events: none;
+}
+
+.sponsor-card.tier-silver .sponsor-logo-link:hover {
+  box-shadow: 7px 7px 0px #000000;
+  translate: -1px -1px;
+}
+
+
+/* Hide entire sponsor card row when there are no sponsors (e.g. empty bronze tier) */
+.sponsor-card--hidden {
+  display: none !important;
 }
 
 .sponsor-logo-img {
@@ -297,25 +325,3 @@
     padding: 16px 18px;
     border-bottom: 1px solid #000;
   }
-
-  .sponsor-tier-subtitle {
-    text-align: left;
-  }
-
-  /* Override the pseudo-element divider on mobile — replaced by border-bottom above */
-  .sponsor-meta-col::after {
-    display: none;
-  }
-
-  .sponsor-logos-area {
-    justify-content: center !important;
-    flex-wrap: wrap;
-    padding: 18px 18px;
-    gap: 14px;
-  }
-
-  .sponsor-card.tier-silver .sponsor-logo-link {
-    min-width: 110px;
-    padding: 10px 14px;
-  }
-}
